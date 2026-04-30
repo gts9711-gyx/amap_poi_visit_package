@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2"><Document>
+<name>北京单计POI核心商圈拜访点位</name>
+<Style id="blue"><IconStyle><color>ff1f78ff</color><scale>1.1</scale><Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-circle.png</href></Icon></IconStyle></Style>
+<Style id="orange"><IconStyle><color>ff00a5ff</color><scale>1.1</scale><Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-circle.png</href></Icon></IconStyle></Style>
+<Style id="red"><IconStyle><color>ff0000ff</color><scale>1.1</scale><Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-circle.png</href></Icon></IconStyle></Style>
+<Style id="gray"><IconStyle><color>ff888888</color><scale>1.1</scale><Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-circle.png</href></Icon></IconStyle></Style>
+<Folder><name>南锣鼓巷-雍和宫-隆福寺</name>
+<Placemark>
+<name>扫码/营销调研-稻香村·北京特产·老字号糕点</name>
+<description><![CDATA[位置:南锣鼓巷-雍和宫-隆福寺; 标签:扫码/营销调研; 地址:鼓楼东大街144号; 小组:北京六区6; BDM:杨卉; BD:张佳音; 商圈:热点商业区块,热门景点; 经营大类:核心商业区,休闲文旅区; 本月GMV:44882.84; 线下GMV:5602.80; 商品数:20; 搜索次数:3386<br/><a href="https://uri.amap.com/marker?position=116.402164%2C39.940783&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-%E7%A8%BB%E9%A6%99%E6%9D%91%C2%B7%E5%8C%97%E4%BA%AC%E7%89%B9%E4%BA%A7%C2%B7%E8%80%81%E5%AD%97%E5%8F%B7%E7%B3%95%E7%82%B9&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.402164,39.940783,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>扫码/营销调研-廣和川(北京南锣鼓巷店)</name>
+<description><![CDATA[位置:南锣鼓巷-雍和宫-隆福寺; 标签:扫码/营销调研; 地址:交道口街道南锣鼓巷15号; 小组:北京六区6; BDM:杨卉; BD:张佳音; 商圈:热点商业区块,热门景点; 经营大类:核心商业区,休闲文旅区; 本月GMV:15617.40; 线下GMV:1353.40; 商品数:13; 搜索次数:2413<br/><a href="https://uri.amap.com/marker?position=116.402702%2C39.940289&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-%E5%BB%A3%E5%92%8C%E5%B7%9D%28%E5%8C%97%E4%BA%AC%E5%8D%97%E9%94%A3%E9%BC%93%E5%B7%B7%E5%BA%97%29&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.402702,39.940289,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>扫码/营销调研-烘焙町面包店(北新桥总店)</name>
+<description><![CDATA[位置:南锣鼓巷-雍和宫-隆福寺; 标签:扫码/营销调研; 地址:东直门内大街277号1幢1层12号; 小组:北京六区6; BDM:杨卉; BD:王新建; 商圈:热点商业区块,热门景点; 经营大类:核心商业区,休闲文旅区; 本月GMV:10145.40; 线下GMV:1480.70; 商品数:9; 搜索次数:2497<br/><a href="https://uri.amap.com/marker?position=116.416991%2C39.941673&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-%E7%83%98%E7%84%99%E7%94%BA%E9%9D%A2%E5%8C%85%E5%BA%97%28%E5%8C%97%E6%96%B0%E6%A1%A5%E6%80%BB%E5%BA%97%29&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.416991,39.941673,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>扫码/营销调研-稻香村全聚德</name>
+<description><![CDATA[位置:南锣鼓巷-雍和宫-隆福寺; 标签:扫码/营销调研; 地址:地安门烟袋斜街41号; 小组:北京五区5; BDM:张嘉玉; BD:李鹏鹏; 商圈:热门景点,热点商业区块; 经营大类:休闲文旅区,核心商业区; 本月GMV:5027.30; 线下GMV:1412.60; 商品数:15; 搜索次数:625<br/><a href="https://uri.amap.com/marker?position=116.395226%2C39.939180&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-%E7%A8%BB%E9%A6%99%E6%9D%91%E5%85%A8%E8%81%9A%E5%BE%B7&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.395226,39.939180,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>扫码/营销调研-包满意</name>
+<description><![CDATA[位置:南锣鼓巷-雍和宫-隆福寺; 标签:扫码/营销调研; 地址:东四街道东四南大街44号; 小组:北京六区3; BDM:吴权; BD:刘蕙冰; 商圈:热点商业区块; 经营大类:核心商业区; 本月GMV:4580.00; 线下GMV:1449.80; 商品数:9; 搜索次数:293<br/><a href="https://uri.amap.com/marker?position=116.417683%2C39.923087&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-%E5%8C%85%E6%BB%A1%E6%84%8F&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.417683,39.923087,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>扫码/营销调研-Julius Meinl(隆福寺二期店)</name>
+<description><![CDATA[位置:南锣鼓巷-雍和宫-隆福寺; 标签:扫码/营销调研; 地址:隆福寺前街1号QA108号; 小组:北京六区3; BDM:吴权; BD:李守家; 商圈:热点商业区块; 经营大类:核心商业区; 本月GMV:3005.80; 线下GMV:1940.40; 商品数:8; 搜索次数:191<br/><a href="https://uri.amap.com/marker?position=116.413841%2C39.924820&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-Julius+Meinl%28%E9%9A%86%E7%A6%8F%E5%AF%BA%E4%BA%8C%E6%9C%9F%E5%BA%97%29&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.413841,39.924820,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>扫码/营销调研-稻香村(安定门店)</name>
+<description><![CDATA[位置:南锣鼓巷-雍和宫-隆福寺; 标签:扫码/营销调研; 地址:安德路11号(安定门地铁站A西北口步行440米); 小组:北京六区6; BDM:杨卉; BD:李金芮; 商圈:热点商业区块,热门景点; 经营大类:核心商业区,休闲文旅区; 本月GMV:1589.60; 线下GMV:266.40; 商品数:0; 搜索次数:269<br/><a href="https://uri.amap.com/marker?position=116.406180%2C39.951129&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-%E7%A8%BB%E9%A6%99%E6%9D%91%28%E5%AE%89%E5%AE%9A%E9%97%A8%E5%BA%97%29&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.406180,39.951129,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>扫码/营销调研-冯层层·四季风味蛋糕</name>
+<description><![CDATA[位置:南锣鼓巷-雍和宫-隆福寺; 标签:扫码/营销调研; 地址:交道口南大街50号; 小组:北京六区6; BDM:杨卉; BD:张佳音; 商圈:热点商业区块,热门景点; 经营大类:核心商业区,休闲文旅区; 本月GMV:1075.20; 线下GMV:488.60; 商品数:14; 搜索次数:342<br/><a href="https://uri.amap.com/marker?position=116.408772%2C39.938942&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-%E5%86%AF%E5%B1%82%E5%B1%82%C2%B7%E5%9B%9B%E5%AD%A3%E9%A3%8E%E5%91%B3%E8%9B%8B%E7%B3%95&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.408772,39.938942,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>新开问题调研-沃杯饮品店</name>
+<description><![CDATA[位置:南锣鼓巷-雍和宫-隆福寺; 标签:新开问题调研; 地址:景山街道魏家社区老年人协会西10米; 小组:北京六区3; BDM:吴权; BD:李守家; 商圈:热门景点,热点商业区块; 经营大类:休闲文旅区,核心商业区; 本月GMV:0.00; 线下GMV:0.00; 商品数:0; 搜索次数:0<br/><a href="https://uri.amap.com/marker?position=116.416074%2C39.929850&name=%E6%96%B0%E5%BC%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E6%B2%83%E6%9D%AF%E9%A5%AE%E5%93%81%E5%BA%97&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#orange</styleUrl>
+<Point><coordinates>116.416074,39.929850,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>新开问题调研-御见食养家(北京市东城区人民政府店)</name>
+<description><![CDATA[位置:南锣鼓巷-雍和宫-隆福寺; 标签:新开问题调研; 地址:清新路口21—23号; 小组:北京六区3; BDM:吴权; BD:李守家; 商圈:热门景点,热点商业区块; 经营大类:休闲文旅区,核心商业区; 本月GMV:0.00; 线下GMV:0.00; 商品数:0; 搜索次数:0<br/><a href="https://uri.amap.com/marker?position=116.416300%2C39.928360&name=%E6%96%B0%E5%BC%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E5%BE%A1%E8%A7%81%E9%A3%9F%E5%85%BB%E5%AE%B6%28%E5%8C%97%E4%BA%AC%E5%B8%82%E4%B8%9C%E5%9F%8E%E5%8C%BA%E4%BA%BA%E6%B0%91%E6%94%BF%E5%BA%9C%E5%BA%97%29&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#orange</styleUrl>
+<Point><coordinates>116.416300,39.928360,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>新开问题调研-吉事果(隆福寺街店)</name>
+<description><![CDATA[位置:南锣鼓巷-雍和宫-隆福寺; 标签:新开问题调研; 地址:隆福寺街41号底商，东宫影剧院东侧20米; 小组:北京六区3; BDM:吴权; BD:李守家; 商圈:-; 经营大类:-; 本月GMV:0.00; 线下GMV:0.00; 商品数:0; 搜索次数:11<br/><a href="https://uri.amap.com/marker?position=116.415414%2C39.925135&name=%E6%96%B0%E5%BC%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E5%90%89%E4%BA%8B%E6%9E%9C%28%E9%9A%86%E7%A6%8F%E5%AF%BA%E8%A1%97%E5%BA%97%29&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#orange</styleUrl>
+<Point><coordinates>116.415414,39.925135,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>新开问题调研-全聚德稻香村</name>
+<description><![CDATA[位置:南锣鼓巷-雍和宫-隆福寺; 标签:新开问题调研; 地址:烟袋斜街与大石碑胡同交叉口往西60米; 小组:北京五区5; BDM:张嘉玉; BD:李鹏鹏; 商圈:-; 经营大类:-; 本月GMV:0.00; 线下GMV:0.00; 商品数:0; 搜索次数:8<br/><a href="https://uri.amap.com/marker?position=116.394716%2C39.939125&name=%E6%96%B0%E5%BC%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E5%85%A8%E8%81%9A%E5%BE%B7%E7%A8%BB%E9%A6%99%E6%9D%91&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#orange</styleUrl>
+<Point><coordinates>116.394716,39.939125,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>新开问题调研-太阳花蛋挞</name>
+<description><![CDATA[位置:南锣鼓巷-雍和宫-隆福寺; 标签:新开问题调研; 地址:地安门西大街49号; 小组:北京五区5; BDM:张嘉玉; BD:李鹏鹏; 商圈:-; 经营大类:-; 本月GMV:0.00; 线下GMV:0.00; 商品数:0; 搜索次数:0<br/><a href="https://uri.amap.com/marker?position=116.391275%2C39.936597&name=%E6%96%B0%E5%BC%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E5%A4%AA%E9%98%B3%E8%8A%B1%E8%9B%8B%E6%8C%9E&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#orange</styleUrl>
+<Point><coordinates>116.391275,39.936597,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>动销问题调研-西萨蛋糕</name>
+<description><![CDATA[位置:南锣鼓巷-雍和宫-隆福寺; 标签:动销问题调研; 地址:北门仓胡同北门仓6号楼17号; 小组:北京六区6; BDM:杨卉; BD:张佳音; 商圈:热点商业区块; 经营大类:核心商业区; 本月GMV:0.00; 线下GMV:0.00; 商品数:12; 搜索次数:16<br/><a href="https://uri.amap.com/marker?position=116.427965%2C39.934279&name=%E5%8A%A8%E9%94%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E8%A5%BF%E8%90%A8%E8%9B%8B%E7%B3%95&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#red</styleUrl>
+<Point><coordinates>116.427965,39.934279,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>动销问题调研-舆观咖啡.You Viewpoint Cafe</name>
+<description><![CDATA[位置:南锣鼓巷-雍和宫-隆福寺; 标签:动销问题调研; 地址:灯市口演乐胡同93号; 小组:北京六区3; BDM:吴权; BD:刘蕙冰; 商圈:-; 经营大类:-; 本月GMV:0.00; 线下GMV:0.00; 商品数:8; 搜索次数:9<br/><a href="https://uri.amap.com/marker?position=116.418636%2C39.920595&name=%E5%8A%A8%E9%94%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E8%88%86%E8%A7%82%E5%92%96%E5%95%A1.You+Viewpoint+Cafe&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#red</styleUrl>
+<Point><coordinates>116.418636,39.920595,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>动销问题调研-蓝咖啡LANCOFFEE(东直门店)</name>
+<description><![CDATA[位置:南锣鼓巷-雍和宫-隆福寺; 标签:动销问题调研; 地址:东直门街道东直门外大街42号一层101-02室; 小组:北京四区5; BDM:马凯; BD:张玉清; 商圈:热点商业区块; 经营大类:核心商业区; 本月GMV:0.00; 线下GMV:0.00; 商品数:7; 搜索次数:14<br/><a href="https://uri.amap.com/marker?position=116.437493%2C39.940399&name=%E5%8A%A8%E9%94%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E8%93%9D%E5%92%96%E5%95%A1LANCOFFEE%28%E4%B8%9C%E7%9B%B4%E9%97%A8%E5%BA%97%29&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#red</styleUrl>
+<Point><coordinates>116.437493,39.940399,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>动销问题调研-TJE STUDIO(服装咖啡集合店)</name>
+<description><![CDATA[位置:南锣鼓巷-雍和宫-隆福寺; 标签:动销问题调研; 地址:隆福寺6号院1号楼一层EL1-04; 小组:北京六区3; BDM:吴权; BD:李守家; 商圈:热点商业区块; 经营大类:核心商业区; 本月GMV:0.00; 线下GMV:0.00; 商品数:6; 搜索次数:8<br/><a href="https://uri.amap.com/marker?position=116.415904%2C39.924561&name=%E5%8A%A8%E9%94%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-TJE+STUDIO%28%E6%9C%8D%E8%A3%85%E5%92%96%E5%95%A1%E9%9B%86%E5%90%88%E5%BA%97%29&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#red</styleUrl>
+<Point><coordinates>116.415904,39.924561,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>动销问题调研-福京熹奶酪</name>
+<description><![CDATA[位置:南锣鼓巷-雍和宫-隆福寺; 标签:动销问题调研; 地址:地安门外大街甲17号(什刹海地铁站A2西北口步行160米); 小组:北京五区5; BDM:张嘉玉; BD:李鹏鹏; 商圈:热门景点,便民服务; 经营大类:休闲文旅区,社区生活区; 本月GMV:0.00; 线下GMV:0.00; 商品数:4; 搜索次数:24<br/><a href="https://uri.amap.com/marker?position=116.395914%2C39.939558&name=%E5%8A%A8%E9%94%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E7%A6%8F%E4%BA%AC%E7%86%B9%E5%A5%B6%E9%85%AA&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#red</styleUrl>
+<Point><coordinates>116.395914,39.939558,0</coordinates></Point>
+</Placemark>
+</Folder>
+<Folder><name>王府井-前门-西单</name>
+<Placemark>
+<name>扫码/营销调研-馥夏FRUSHA法式半糖蛋糕(北京首店)</name>
+<description><![CDATA[位置:王府井-前门-西单; 标签:扫码/营销调研; 地址:东方广场1层AA56a-1店铺(近商场东门); 小组:北京六区3; BDM:吴权; BD:荆炳贺, 高玉; 商圈:热点商业区块; 经营大类:核心商业区; 本月GMV:5147.40; 线下GMV:2982.80; 商品数:9; 搜索次数:273<br/><a href="https://uri.amap.com/marker?position=116.417068%2C39.909554&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-%E9%A6%A5%E5%A4%8FFRUSHA%E6%B3%95%E5%BC%8F%E5%8D%8A%E7%B3%96%E8%9B%8B%E7%B3%95%28%E5%8C%97%E4%BA%AC%E9%A6%96%E5%BA%97%29&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.417068,39.909554,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>扫码/营销调研-山野丘丘</name>
+<description><![CDATA[位置:王府井-前门-西单; 标签:扫码/营销调研; 地址:天坛街道珠市口东大街6号1层底商6-4号; 小组:北京二区4; BDM:张育岩; BD:张瑷麟, 王文朵; 商圈:热点商业区块; 经营大类:核心商业区; 本月GMV:4544.88; 线下GMV:848.79; 商品数:31; 搜索次数:124<br/><a href="https://uri.amap.com/marker?position=116.411482%2C39.892508&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-%E5%B1%B1%E9%87%8E%E4%B8%98%E4%B8%98&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.411482,39.892508,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>扫码/营销调研-Salud欧洲冻酸奶(北京西单大悦城)</name>
+<description><![CDATA[位置:王府井-前门-西单; 标签:扫码/营销调研; 地址:西单北大街131号7F-D29号商铺; 小组:北京五区1; BDM:刘琦; BD:闫晓钰; 商圈:热点商业区块; 经营大类:核心商业区; 本月GMV:2291.34; 线下GMV:517.00; 商品数:15; 搜索次数:143<br/><a href="https://uri.amap.com/marker?position=116.372838%2C39.910539&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-Salud%E6%AC%A7%E6%B4%B2%E5%86%BB%E9%85%B8%E5%A5%B6%28%E5%8C%97%E4%BA%AC%E8%A5%BF%E5%8D%95%E5%A4%A7%E6%82%A6%E5%9F%8E%29&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.372838,39.910539,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>扫码/营销调研-COOPS自然醒(银泰in88购物中心店)</name>
+<description><![CDATA[位置:王府井-前门-西单; 标签:扫码/营销调研; 地址:王府井大街88号王府井银泰in88B1层; 小组:北京六区3; BDM:吴权; BD:叶傲霜; 商圈:热点商业区块; 经营大类:核心商业区; 本月GMV:997.10; 线下GMV:439.10; 商品数:4; 搜索次数:71<br/><a href="https://uri.amap.com/marker?position=116.411923%2C39.915840&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-COOPS%E8%87%AA%E7%84%B6%E9%86%92%28%E9%93%B6%E6%B3%B0in88%E8%B4%AD%E7%89%A9%E4%B8%AD%E5%BF%83%E5%BA%97%29&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.411923,39.915840,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>扫码/营销调研-露娜·LUNA面包烘焙</name>
+<description><![CDATA[位置:王府井-前门-西单; 标签:扫码/营销调研; 地址:烂缦胡同南口130号; 小组:北京二区1; BDM:钱耿依隆; BD:隋明浩; 商圈:热点商业区块; 经营大类:核心商业区; 本月GMV:994.60; 线下GMV:336.19; 商品数:10; 搜索次数:1228<br/><a href="https://uri.amap.com/marker?position=116.372368%2C39.883426&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-%E9%9C%B2%E5%A8%9C%C2%B7LUNA%E9%9D%A2%E5%8C%85%E7%83%98%E7%84%99&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.372368,39.883426,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>扫码/营销调研-全意·Whole heart烘培(中信城店)</name>
+<description><![CDATA[位置:王府井-前门-西单; 标签:扫码/营销调研; 地址:菜市口大街甲2号院3号楼1层101（中信沁园底商）; 小组:北京二区1; BDM:钱耿依隆; BD:李清彬, 王欣燕; 商圈:热点商业区块; 经营大类:核心商业区; 本月GMV:765.00; 线下GMV:540.00; 商品数:5; 搜索次数:34<br/><a href="https://uri.amap.com/marker?position=116.374790%2C39.885332&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-%E5%85%A8%E6%84%8F%C2%B7Whole+heart%E7%83%98%E5%9F%B9%28%E4%B8%AD%E4%BF%A1%E5%9F%8E%E5%BA%97%29&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.374790,39.885332,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>扫码/营销调研-稻香村(百货大楼店)</name>
+<description><![CDATA[位置:王府井-前门-西单; 标签:扫码/营销调研; 地址:东华门街道北京市百货大楼255号地下一层; 小组:北京六区3; BDM:吴权; BD:荆炳贺, 高玉; 商圈:热门景点,热点商业区块; 经营大类:休闲文旅区,核心商业区; 本月GMV:19239.93; 线下GMV:51.60; 商品数:5; 搜索次数:2985<br/><a href="https://uri.amap.com/marker?position=116.410203%2C39.914049&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-%E7%A8%BB%E9%A6%99%E6%9D%91%28%E7%99%BE%E8%B4%A7%E5%A4%A7%E6%A5%BC%E5%BA%97%29&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.410203,39.914049,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>扫码/营销调研-炉彼烘焙工坊Luppie Bakery(崇文门合景魔方商场店)</name>
+<description><![CDATA[位置:王府井-前门-西单; 标签:扫码/营销调研; 地址:崇文门外大街1号北京合景·摩方购物中心B1; 小组:北京二区4; BDM:张育岩; BD:白鑫宇; 商圈:商业街/步行街&amp;集市,热门景点; 经营大类:核心商业区,休闲文旅区; 本月GMV:2846.40; 线下GMV:0.00; 商品数:4; 搜索次数:286<br/><a href="https://uri.amap.com/marker?position=116.417661%2C39.899661&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-%E7%82%89%E5%BD%BC%E7%83%98%E7%84%99%E5%B7%A5%E5%9D%8ALuppie+Bakery%28%E5%B4%87%E6%96%87%E9%97%A8%E5%90%88%E6%99%AF%E9%AD%94%E6%96%B9%E5%95%86%E5%9C%BA%E5%BA%97%29&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.417661,39.899661,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>新开问题调研-稻香村糕点</name>
+<description><![CDATA[位置:王府井-前门-西单; 标签:新开问题调研; 地址:大栅栏西街110号; 小组:北京二区1; BDM:钱耿依隆; BD:李清彬; 商圈:-; 经营大类:-; 本月GMV:0.00; 线下GMV:0.00; 商品数:0; 搜索次数:0<br/><a href="https://uri.amap.com/marker?position=116.396500%2C39.895940&name=%E6%96%B0%E5%BC%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E7%A8%BB%E9%A6%99%E6%9D%91%E7%B3%95%E7%82%B9&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#orange</styleUrl>
+<Point><coordinates>116.396500,39.895940,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>新开问题调研-现榨果汁</name>
+<description><![CDATA[位置:王府井-前门-西单; 标签:新开问题调研; 地址:小江胡同1号; 小组:北京二区4; BDM:张育岩; BD:张瑷麟, 王文朵; 商圈:-; 经营大类:-; 本月GMV:0.00; 线下GMV:0.00; 商品数:0; 搜索次数:0<br/><a href="https://uri.amap.com/marker?position=116.398099%2C39.896303&name=%E6%96%B0%E5%BC%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E7%8E%B0%E6%A6%A8%E6%9E%9C%E6%B1%81&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#orange</styleUrl>
+<Point><coordinates>116.398099,39.896303,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>新开问题调研-糯叽叽麻糍铺</name>
+<description><![CDATA[位置:王府井-前门-西单; 标签:新开问题调研; 地址:前门步行街6号; 小组:北京二区4; BDM:张育岩; BD:张瑷麟, 王文朵; 商圈:商业街/步行街&amp;集市,热门景点; 经营大类:核心商业区,休闲文旅区; 本月GMV:0.00; 线下GMV:0.00; 商品数:0; 搜索次数:40<br/><a href="https://uri.amap.com/marker?position=116.398399%2C39.895275&name=%E6%96%B0%E5%BC%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E7%B3%AF%E5%8F%BD%E5%8F%BD%E9%BA%BB%E7%B3%8D%E9%93%BA&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#orange</styleUrl>
+<Point><coordinates>116.398399,39.895275,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>新开问题调研-北冰洋北平制冰厂饮品</name>
+<description><![CDATA[位置:王府井-前门-西单; 标签:新开问题调研; 地址:永定门内大街1号(天坛西门); 小组:北京二区1; BDM:钱耿依隆; BD:李桐, 张博辉; 商圈:-; 经营大类:-; 本月GMV:0.00; 线下GMV:0.00; 商品数:0; 搜索次数:7<br/><a href="https://uri.amap.com/marker?position=116.398473%2C39.880723&name=%E6%96%B0%E5%BC%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E5%8C%97%E5%86%B0%E6%B4%8B%E5%8C%97%E5%B9%B3%E5%88%B6%E5%86%B0%E5%8E%82%E9%A5%AE%E5%93%81&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#orange</styleUrl>
+<Point><coordinates>116.398473,39.880723,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>新开问题调研-椰不二(北京东城国瑞店)</name>
+<description><![CDATA[位置:王府井-前门-西单; 标签:新开问题调研; 地址:崇文门外大街18号; 小组:北京二区4; BDM:张育岩; BD:张瑷麟; 商圈:热点商业区块,跨城交通--火车站/高铁站; 经营大类:核心商业区,交通枢纽区; 本月GMV:0.00; 线下GMV:0.00; 商品数:0; 搜索次数:6<br/><a href="https://uri.amap.com/marker?position=116.419746%2C39.898707&name=%E6%96%B0%E5%BC%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E6%A4%B0%E4%B8%8D%E4%BA%8C%28%E5%8C%97%E4%BA%AC%E4%B8%9C%E5%9F%8E%E5%9B%BD%E7%91%9E%E5%BA%97%29&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#orange</styleUrl>
+<Point><coordinates>116.419746,39.898707,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>动销问题调研-复古空间·茶·咖啡·花</name>
+<description><![CDATA[位置:王府井-前门-西单; 标签:动销问题调研; 地址:崇文门外街道五老胡同北口兴隆都市馨园1号楼B20室; 小组:北京二区4; BDM:张育岩; BD:白鑫宇; 商圈:热点商业区块; 经营大类:核心商业区; 本月GMV:0.00; 线下GMV:0.00; 商品数:22; 搜索次数:64<br/><a href="https://uri.amap.com/marker?position=116.415285%2C39.896443&name=%E5%8A%A8%E9%94%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E5%A4%8D%E5%8F%A4%E7%A9%BA%E9%97%B4%C2%B7%E8%8C%B6%C2%B7%E5%92%96%E5%95%A1%C2%B7%E8%8A%B1&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#red</styleUrl>
+<Point><coordinates>116.415285,39.896443,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>动销问题调研-暖拾茶饮</name>
+<description><![CDATA[位置:王府井-前门-西单; 标签:动销问题调研; 地址:南横西街31号3号房; 小组:北京二区1; BDM:钱耿依隆; BD:隋明浩; 商圈:-; 经营大类:-; 本月GMV:0.00; 线下GMV:0.00; 商品数:14; 搜索次数:11<br/><a href="https://uri.amap.com/marker?position=116.372702%2C39.883467&name=%E5%8A%A8%E9%94%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E6%9A%96%E6%8B%BE%E8%8C%B6%E9%A5%AE&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#red</styleUrl>
+<Point><coordinates>116.372702,39.883467,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>动销问题调研-财院儿(北京四合院店)</name>
+<description><![CDATA[位置:王府井-前门-西单; 标签:动销问题调研; 地址:樱桃斜街66号; 小组:北京二区1; BDM:钱耿依隆; BD:李清彬; 商圈:热点商业区块; 经营大类:核心商业区; 本月GMV:0.00; 线下GMV:0.00; 商品数:11; 搜索次数:130<br/><a href="https://uri.amap.com/marker?position=116.386773%2C39.892688&name=%E5%8A%A8%E9%94%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E8%B4%A2%E9%99%A2%E5%84%BF%28%E5%8C%97%E4%BA%AC%E5%9B%9B%E5%90%88%E9%99%A2%E5%BA%97%29&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#red</styleUrl>
+<Point><coordinates>116.386773,39.892688,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>动销问题调研-5cake五度无蔗糖蛋糕(陶然亭店)</name>
+<description><![CDATA[位置:王府井-前门-西单; 标签:动销问题调研; 地址:陶然亭路12号京都瑞成大厦1层; 小组:北京二区1; BDM:钱耿依隆; BD:李桐, 张博辉; 商圈:热门景点; 经营大类:休闲文旅区; 本月GMV:0.00; 线下GMV:0.00; 商品数:10; 搜索次数:208<br/><a href="https://uri.amap.com/marker?position=116.377368%2C39.878437&name=%E5%8A%A8%E9%94%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-5cake%E4%BA%94%E5%BA%A6%E6%97%A0%E8%94%97%E7%B3%96%E8%9B%8B%E7%B3%95%28%E9%99%B6%E7%84%B6%E4%BA%AD%E5%BA%97%29&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#red</styleUrl>
+<Point><coordinates>116.377368,39.878437,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>动销问题调研-咔咖咖啡(天安天地大厦店)</name>
+<description><![CDATA[位置:王府井-前门-西单; 标签:动销问题调研; 地址:西绒线胡同28号楼1层109; 小组:北京五区1; BDM:刘琦; BD:闫晓钰; 商圈:热点商业区块; 经营大类:核心商业区; 本月GMV:0.00; 线下GMV:0.00; 商品数:6; 搜索次数:12<br/><a href="https://uri.amap.com/marker?position=116.375801%2C39.903584&name=%E5%8A%A8%E9%94%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E5%92%94%E5%92%96%E5%92%96%E5%95%A1%28%E5%A4%A9%E5%AE%89%E5%A4%A9%E5%9C%B0%E5%A4%A7%E5%8E%A6%E5%BA%97%29&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#red</styleUrl>
+<Point><coordinates>116.375801,39.903584,0</coordinates></Point>
+</Placemark>
+</Folder>
+<Folder><name>三里屯-朝阳公园-蓝色港湾</name>
+<Placemark>
+<name>扫码/营销调研-Ran's然·生甜甜圈(三里屯店)</name>
+<description><![CDATA[位置:三里屯-朝阳公园-蓝色港湾; 标签:扫码/营销调研; 地址:工体北路4号院81号楼1层; 小组:北京四区5; BDM:马凯; BD:徐新惠, 胡子妍; 商圈:热门景点; 经营大类:休闲文旅区; 本月GMV:5545.40; 线下GMV:1608.60; 商品数:13; 搜索次数:1484<br/><a href="https://uri.amap.com/marker?position=116.456653%2C39.932312&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-Ran%27s%E7%84%B6%C2%B7%E7%94%9F%E7%94%9C%E7%94%9C%E5%9C%88%28%E4%B8%89%E9%87%8C%E5%B1%AF%E5%BA%97%29&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.456653,39.932312,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>扫码/营销调研-coops自然醒戚风专门(三里屯机电院店)</name>
+<description><![CDATA[位置:三里屯-朝阳公园-蓝色港湾; 标签:扫码/营销调研; 地址:工人体育场北路4号81号楼一层110室（三里屯4号院内）; 小组:北京四区5; BDM:马凯; BD:徐新惠, 胡子妍; 商圈:传统娱乐场所,综合商场&amp;日用商超; 经营大类:休闲文旅区,核心商业区; 本月GMV:3559.00; 线下GMV:2249.00; 商品数:9; 搜索次数:299<br/><a href="https://uri.amap.com/marker?position=116.456612%2C39.932395&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-coops%E8%87%AA%E7%84%B6%E9%86%92%E6%88%9A%E9%A3%8E%E4%B8%93%E9%97%A8%28%E4%B8%89%E9%87%8C%E5%B1%AF%E6%9C%BA%E7%94%B5%E9%99%A2%E5%BA%97%29&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.456612,39.932395,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>扫码/营销调研-知知岛书店(北京姚家园万象汇店)</name>
+<description><![CDATA[位置:三里屯-朝阳公园-蓝色港湾; 标签:扫码/营销调研; 地址:平房地区青年北路35号院1号楼1层L104A号; 小组:北京四区6; BDM:刘圳; BD:花宇; 商圈:综合商场&amp;日用商超商业街/步行街&amp;集市; 经营大类:核心商业区核心商业区; 本月GMV:2637.40; 线下GMV:1997.80; 商品数:9; 搜索次数:77<br/><a href="https://uri.amap.com/marker?position=116.515880%2C39.941420&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-%E7%9F%A5%E7%9F%A5%E5%B2%9B%E4%B9%A6%E5%BA%97%28%E5%8C%97%E4%BA%AC%E5%A7%9A%E5%AE%B6%E5%9B%AD%E4%B8%87%E8%B1%A1%E6%B1%87%E5%BA%97%29&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.515880,39.941420,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>扫码/营销调研-with coffee</name>
+<description><![CDATA[位置:三里屯-朝阳公园-蓝色港湾; 标签:扫码/营销调研; 地址:将府南街1号院16号楼16层2单元1601等【107】套内1层16-2内04; 小组:北京四区6; BDM:刘圳; BD:和少云; 商圈:便民服务; 经营大类:社区生活区; 本月GMV:1205.80; 线下GMV:1185.90; 商品数:5; 搜索次数:30<br/><a href="https://uri.amap.com/marker?position=116.506801%2C39.966448&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-with+coffee&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.506801,39.966448,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>扫码/营销调研-小山小兽</name>
+<description><![CDATA[位置:三里屯-朝阳公园-蓝色港湾; 标签:扫码/营销调研; 地址:朝阳公园艺术馆停车场西北120米; 小组:北京四区7; BDM:张贵宁; BD:马京超; 商圈:热门景点; 经营大类:休闲文旅区; 本月GMV:494.30; 线下GMV:225.30; 商品数:5; 搜索次数:27<br/><a href="https://uri.amap.com/marker?position=116.485122%2C39.947042&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-%E5%B0%8F%E5%B1%B1%E5%B0%8F%E5%85%BD&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.485122,39.947042,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>扫码/营销调研-奇多市北京面包节</name>
+<description><![CDATA[位置:三里屯-朝阳公园-蓝色港湾; 标签:扫码/营销调研; 地址:朝阳公园南路1号; 小组:北京四区7; BDM:张贵宁; BD:马京超; 商圈:热门景点; 经营大类:休闲文旅区; 本月GMV:389311.90; 线下GMV:38.00; 商品数:0; 搜索次数:72541<br/><a href="https://uri.amap.com/marker?position=116.482630%2C39.944151&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-%E5%A5%87%E5%A4%9A%E5%B8%82%E5%8C%97%E4%BA%AC%E9%9D%A2%E5%8C%85%E8%8A%82&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.482630,39.944151,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>扫码/营销调研-京糕玉草鸡蛋蛋糕</name>
+<description><![CDATA[位置:三里屯-朝阳公园-蓝色港湾; 标签:扫码/营销调研; 地址:石佛营路与晨光东路交叉口东南80米; 小组:北京四区6; BDM:刘圳; BD:孙新禹; 商圈:热点商业区块; 经营大类:核心商业区; 本月GMV:3457.77; 线下GMV:0.00; 商品数:5; 搜索次数:511<br/><a href="https://uri.amap.com/marker?position=116.502377%2C39.923957&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-%E4%BA%AC%E7%B3%95%E7%8E%89%E8%8D%89%E9%B8%A1%E8%9B%8B%E8%9B%8B%E7%B3%95&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.502377,39.923957,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>扫码/营销调研-Salud欧洲冻酸奶(蓝色港湾店)</name>
+<description><![CDATA[位置:三里屯-朝阳公园-蓝色港湾; 标签:扫码/营销调研; 地址:麦子店街道公园路6号蓝色港湾国际商区地下一层A019(皮爷咖啡对面); 小组:北京四区7; BDM:张贵宁; BD:魏俊; 商圈:综合商场&amp;日用商超; 经营大类:核心商业区; 本月GMV:2011.43; 线下GMV:0.00; 商品数:20; 搜索次数:145<br/><a href="https://uri.amap.com/marker?position=116.475083%2C39.948707&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-Salud%E6%AC%A7%E6%B4%B2%E5%86%BB%E9%85%B8%E5%A5%B6%28%E8%93%9D%E8%89%B2%E6%B8%AF%E6%B9%BE%E5%BA%97%29&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.475083,39.948707,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>新开问题调研-瑞幸咖啡(骏豪中央公园广场A7店)</name>
+<description><![CDATA[位置:三里屯-朝阳公园-蓝色港湾; 标签:新开问题调研; 地址:公园南路10号院骏豪中央公园广场A7座负一层B152号; 小组:北京四区5; BDM:马凯; BD:张倩; 商圈:-; 经营大类:-; 本月GMV:0.00; 线下GMV:0.00; 商品数:0; 搜索次数:0<br/><a href="https://uri.amap.com/marker?position=116.477943%2C39.932168&name=%E6%96%B0%E5%BC%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E7%91%9E%E5%B9%B8%E5%92%96%E5%95%A1%28%E9%AA%8F%E8%B1%AA%E4%B8%AD%E5%A4%AE%E5%85%AC%E5%9B%AD%E5%B9%BF%E5%9C%BAA7%E5%BA%97%29&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#orange</styleUrl>
+<Point><coordinates>116.477943,39.932168,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>新开问题调研-Coffee Bar</name>
+<description><![CDATA[位置:三里屯-朝阳公园-蓝色港湾; 标签:新开问题调研; 地址:亮马桥路52号燕莎友谊商城4层; 小组:北京四区7; BDM:张贵宁; BD:汪兆浩; 商圈:-; 经营大类:-; 本月GMV:0.00; 线下GMV:0.00; 商品数:0; 搜索次数:0<br/><a href="https://uri.amap.com/marker?position=116.463232%2C39.948622&name=%E6%96%B0%E5%BC%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-Coffee+Bar&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#orange</styleUrl>
+<Point><coordinates>116.463232,39.948622,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>新开问题调研-来杯GrabOne Coffee</name>
+<description><![CDATA[位置:三里屯-朝阳公园-蓝色港湾; 标签:新开问题调研; 地址:青年路国美第一城2号院6号楼; 小组:北京四区6; BDM:刘圳; BD:王帅; 商圈:-; 经营大类:-; 本月GMV:0.00; 线下GMV:0.00; 商品数:0; 搜索次数:0<br/><a href="https://uri.amap.com/marker?position=116.513325%2C39.934510&name=%E6%96%B0%E5%BC%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E6%9D%A5%E6%9D%AFGrabOne+Coffee&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#orange</styleUrl>
+<Point><coordinates>116.513325,39.934510,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>新开问题调研-KOFFICE</name>
+<description><![CDATA[位置:三里屯-朝阳公园-蓝色港湾; 标签:新开问题调研; 地址:呼家楼街道东三环中路1号环球金融中心东楼2楼201室; 小组:北京四区8; BDM:马凯; BD:张嘉芮; 商圈:-; 经营大类:-; 本月GMV:0.00; 线下GMV:0.00; 商品数:0; 搜索次数:1<br/><a href="https://uri.amap.com/marker?position=116.491673%2C39.922528&name=%E6%96%B0%E5%BC%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-KOFFICE&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#orange</styleUrl>
+<Point><coordinates>116.491673,39.922528,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>新开问题调研-星潮咖XINGCHAOKA</name>
+<description><![CDATA[位置:三里屯-朝阳公园-蓝色港湾; 标签:新开问题调研; 地址:米座大厦1层; 小组:北京四区8; BDM:马凯; BD:张思盈; 商圈:-; 经营大类:-; 本月GMV:0.00; 线下GMV:0.00; 商品数:0; 搜索次数:0<br/><a href="https://uri.amap.com/marker?position=116.486409%2C39.921489&name=%E6%96%B0%E5%BC%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E6%98%9F%E6%BD%AE%E5%92%96XINGCHAOKA&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#orange</styleUrl>
+<Point><coordinates>116.486409,39.921489,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>动销问题调研-沁甜网红小食甜饮</name>
+<description><![CDATA[位置:三里屯-朝阳公园-蓝色港湾; 标签:动销问题调研; 地址:十里堡北区18号院1号楼1层101室102号（近东门）; 小组:北京四区6; BDM:刘圳; BD:孙新禹; 商圈:热点商业区块; 经营大类:核心商业区; 本月GMV:0.00; 线下GMV:0.00; 商品数:11; 搜索次数:3<br/><a href="https://uri.amap.com/marker?position=116.504350%2C39.929648&name=%E5%8A%A8%E9%94%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E6%B2%81%E7%94%9C%E7%BD%91%E7%BA%A2%E5%B0%8F%E9%A3%9F%E7%94%9C%E9%A5%AE&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#red</styleUrl>
+<Point><coordinates>116.504350,39.929648,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>动销问题调研-Lefty Coffee</name>
+<description><![CDATA[位置:三里屯-朝阳公园-蓝色港湾; 标签:动销问题调研; 地址:东四环北路6号-2区-1号楼-1层-c-49号; 小组:北京四区7; BDM:张贵宁; BD:马京超; 商圈:热点商业区块,商业街/步行街&amp;集市; 经营大类:核心商业区,核心商业区; 本月GMV:0.00; 线下GMV:0.00; 商品数:8; 搜索次数:14<br/><a href="https://uri.amap.com/marker?position=116.481507%2C39.966330&name=%E5%8A%A8%E9%94%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-Lefty+Coffee&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#red</styleUrl>
+<Point><coordinates>116.481507,39.966330,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>动销问题调研-Hana Crepes可丽饼</name>
+<description><![CDATA[位置:三里屯-朝阳公园-蓝色港湾; 标签:动销问题调研; 地址:团结湖东里3-5号中里16号101; 小组:北京四区5; BDM:马凯; BD:杨朝雁, 武爽; 商圈:热门景点; 经营大类:休闲文旅区; 本月GMV:0.00; 线下GMV:0.00; 商品数:7; 搜索次数:8<br/><a href="https://uri.amap.com/marker?position=116.468546%2C39.929245&name=%E5%8A%A8%E9%94%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-Hana+Crepes%E5%8F%AF%E4%B8%BD%E9%A5%BC&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#red</styleUrl>
+<Point><coordinates>116.468546,39.929245,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>动销问题调研-飞鸟制茶</name>
+<description><![CDATA[位置:三里屯-朝阳公园-蓝色港湾; 标签:动销问题调研; 地址:三里屯路33号33大厦B1层B1006; 小组:北京四区5; BDM:马凯; BD:孙福宇, 杨朝雁; 商圈:热点商业区块; 经营大类:核心商业区; 本月GMV:0.00; 线下GMV:0.00; 商品数:6; 搜索次数:12<br/><a href="https://uri.amap.com/marker?position=116.454773%2C39.936840&name=%E5%8A%A8%E9%94%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E9%A3%9E%E9%B8%9F%E5%88%B6%E8%8C%B6&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#red</styleUrl>
+<Point><coordinates>116.454773,39.936840,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>动销问题调研-Emperor Coffee</name>
+<description><![CDATA[位置:三里屯-朝阳公园-蓝色港湾; 标签:动销问题调研; 地址:东三环北路8号亮马河大厦F1层; 小组:北京四区7; BDM:张贵宁; BD:汪兆浩; 商圈:传统娱乐场所; 经营大类:休闲文旅区; 本月GMV:0.00; 线下GMV:0.00; 商品数:3; 搜索次数:2<br/><a href="https://uri.amap.com/marker?position=116.464508%2C39.945522&name=%E5%8A%A8%E9%94%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-Emperor+Coffee&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#red</styleUrl>
+<Point><coordinates>116.464508,39.945522,0</coordinates></Point>
+</Placemark>
+</Folder>
+<Folder><name>通州万达-北运河-玉桥</name>
+<Placemark>
+<name>扫码/营销调研-李饱饱甜品(通州万达店)</name>
+<description><![CDATA[位置:通州万达-北运河-玉桥; 标签:扫码/营销调研; 地址:北苑街道新华西街128号通州万达广场西门金街B区; 小组:北京三区6; BDM:李础伊; BD:王润泽; 商圈:综合商场&amp;日用商超商业街/步行街&amp;集市; 经营大类:核心商业区核心商业区; 本月GMV:73426.90; 线下GMV:15610.88; 商品数:13; 搜索次数:6430<br/><a href="https://uri.amap.com/marker?position=116.641409%2C39.904659&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-%E6%9D%8E%E9%A5%B1%E9%A5%B1%E7%94%9C%E5%93%81%28%E9%80%9A%E5%B7%9E%E4%B8%87%E8%BE%BE%E5%BA%97%29&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.641409,39.904659,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>扫码/营销调研-青野先生的花园</name>
+<description><![CDATA[位置:通州万达-北运河-玉桥; 标签:扫码/营销调研; 地址:滨河北路与东关三街交叉口; 小组:北京三区1; BDM:郝伍彩; BD:王文浩; 商圈:综合商场&amp;日用商超商业街/步行街&amp;集市; 经营大类:核心商业区核心商业区; 本月GMV:2624.00; 线下GMV:1374.00; 商品数:4; 搜索次数:144<br/><a href="https://uri.amap.com/marker?position=116.682533%2C39.907588&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-%E9%9D%92%E9%87%8E%E5%85%88%E7%94%9F%E7%9A%84%E8%8A%B1%E5%9B%AD&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.682533,39.907588,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>扫码/营销调研-牧岚花语(北京通州万达店)</name>
+<description><![CDATA[位置:通州万达-北运河-玉桥; 标签:扫码/营销调研; 地址:新华大街58号万达广场F1; 小组:北京三区6; BDM:李础伊; BD:王润泽; 商圈:综合商场&amp;日用商超商业街/步行街&amp;集市; 经营大类:核心商业区核心商业区; 本月GMV:2334.00; 线下GMV:1259.90; 商品数:4; 搜索次数:70<br/><a href="https://uri.amap.com/marker?position=116.641937%2C39.905534&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-%E7%89%A7%E5%B2%9A%E8%8A%B1%E8%AF%AD%28%E5%8C%97%E4%BA%AC%E9%80%9A%E5%B7%9E%E4%B8%87%E8%BE%BE%E5%BA%97%29&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.641937,39.905534,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>扫码/营销调研-大顺斋非遗工坊005</name>
+<description><![CDATA[位置:通州万达-北运河-玉桥; 标签:扫码/营销调研; 地址:北杨洼小区13号楼1层; 小组:北京三区1; BDM:郝伍彩; BD:王昊; 商圈:综合商场&amp;日用商超热门景点; 经营大类:核心商业区休闲文旅区; 本月GMV:2001.30; 线下GMV:857.00; 商品数:0; 搜索次数:752<br/><a href="https://uri.amap.com/marker?position=116.671481%2C39.887699&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-%E5%A4%A7%E9%A1%BA%E6%96%8B%E9%9D%9E%E9%81%97%E5%B7%A5%E5%9D%8A005&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.671481,39.887699,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>扫码/营销调研-亿利草鸡蛋糕(万达金街店)</name>
+<description><![CDATA[位置:通州万达-北运河-玉桥; 标签:扫码/营销调研; 地址:新华西街58号院5号楼1层119; 小组:北京三区6; BDM:李础伊; BD:王润泽; 商圈:综合商场&amp;日用商超商业街/步行街&amp;集市; 经营大类:核心商业区核心商业区; 本月GMV:8826.44; 线下GMV:55.20; 商品数:9; 搜索次数:908<br/><a href="https://uri.amap.com/marker?position=116.642097%2C39.904716&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-%E4%BA%BF%E5%88%A9%E8%8D%89%E9%B8%A1%E8%9B%8B%E7%B3%95%28%E4%B8%87%E8%BE%BE%E9%87%91%E8%A1%97%E5%BA%97%29&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.642097,39.904716,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>扫码/营销调研-缘又甜</name>
+<description><![CDATA[位置:通州万达-北运河-玉桥; 标签:扫码/营销调研; 地址:新华大街58号万达广场F1; 小组:北京三区6; BDM:李础伊; BD:王润泽; 商圈:综合商场&amp;日用商超商业街/步行街&amp;集市; 经营大类:核心商业区核心商业区; 本月GMV:1356.00; 线下GMV:0.00; 商品数:7; 搜索次数:223<br/><a href="https://uri.amap.com/marker?position=116.639963%2C39.905304&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-%E7%BC%98%E5%8F%88%E7%94%9C&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.639963,39.905304,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>扫码/营销调研-向日葵冷批</name>
+<description><![CDATA[位置:通州万达-北运河-玉桥; 标签:扫码/营销调研; 地址:通州乔庄商业街向日葵冷批99号; 小组:北京三区1; BDM:郝伍彩; BD:郭炳晨; 商圈:综合商场&amp;日用商超商业街/步行街&amp;集市; 经营大类:核心商业区核心商业区; 本月GMV:826.40; 线下GMV:0.00; 商品数:48; 搜索次数:163<br/><a href="https://uri.amap.com/marker?position=116.685537%2C39.895844&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-%E5%90%91%E6%97%A5%E8%91%B5%E5%86%B7%E6%89%B9&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.685537,39.895844,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>扫码/营销调研-DOUBLE ME-手工乳品</name>
+<description><![CDATA[位置:通州万达-北运河-玉桥; 标签:扫码/营销调研; 地址:新华街道新华东街289号院1号院1号楼爱琴海店; 小组:北京三区6; BDM:李础伊; BD:穆为民; 商圈:热点商业区块; 经营大类:核心商业区; 本月GMV:432.10; 线下GMV:0.00; 商品数:10; 搜索次数:49<br/><a href="https://uri.amap.com/marker?position=116.658697%2C39.908755&name=%E6%89%AB%E7%A0%81%2F%E8%90%A5%E9%94%80%E8%B0%83%E7%A0%94-DOUBLE+ME-%E6%89%8B%E5%B7%A5%E4%B9%B3%E5%93%81&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#blue</styleUrl>
+<Point><coordinates>116.658697,39.908755,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>新开问题调研-蜜雪冰城(物资学院路店)</name>
+<description><![CDATA[位置:通州万达-北运河-玉桥; 标签:新开问题调研; 地址:物资学院路09号一层至二层; 小组:北京三区6; BDM:李础伊; BD:陶俊; 商圈:-; 经营大类:-; 本月GMV:0.00; 线下GMV:0.00; 商品数:0; 搜索次数:0<br/><a href="https://uri.amap.com/marker?position=116.639146%2C39.925014&name=%E6%96%B0%E5%BC%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E8%9C%9C%E9%9B%AA%E5%86%B0%E5%9F%8E%28%E7%89%A9%E8%B5%84%E5%AD%A6%E9%99%A2%E8%B7%AF%E5%BA%97%29&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#orange</styleUrl>
+<Point><coordinates>116.639146,39.925014,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>新开问题调研-初夏麻糍铺</name>
+<description><![CDATA[位置:通州万达-北运河-玉桥; 标签:新开问题调研; 地址:九棵树街道云景东路5-6号; 小组:北京三区1; BDM:郝伍彩; BD:刘杨; 商圈:-; 经营大类:-; 本月GMV:0.00; 线下GMV:0.00; 商品数:0; 搜索次数:8<br/><a href="https://uri.amap.com/marker?position=116.666506%2C39.882928&name=%E6%96%B0%E5%BC%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E5%88%9D%E5%A4%8F%E9%BA%BB%E7%B3%8D%E9%93%BA&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#orange</styleUrl>
+<Point><coordinates>116.666506,39.882928,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>新开问题调研-水果捞捞捞</name>
+<description><![CDATA[位置:通州万达-北运河-玉桥; 标签:新开问题调研; 地址:芙蓉西路月亮河足球公园路边; 小组:北京三区6; BDM:李础伊; BD:秦凤阳; 商圈:-; 经营大类:-; 本月GMV:0.00; 线下GMV:0.00; 商品数:0; 搜索次数:0<br/><a href="https://uri.amap.com/marker?position=116.677298%2C39.918019&name=%E6%96%B0%E5%BC%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E6%B0%B4%E6%9E%9C%E6%8D%9E%E6%8D%9E%E6%8D%9E&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#orange</styleUrl>
+<Point><coordinates>116.677298,39.918019,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>新开问题调研-花式自助冰粉</name>
+<description><![CDATA[位置:通州万达-北运河-玉桥; 标签:新开问题调研; 地址:芙蓉西路月亮河足球公园路边; 小组:北京三区6; BDM:李础伊; BD:秦凤阳; 商圈:-; 经营大类:-; 本月GMV:0.00; 线下GMV:0.00; 商品数:0; 搜索次数:0<br/><a href="https://uri.amap.com/marker?position=116.677309%2C39.918104&name=%E6%96%B0%E5%BC%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E8%8A%B1%E5%BC%8F%E8%87%AA%E5%8A%A9%E5%86%B0%E7%B2%89&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#orange</styleUrl>
+<Point><coordinates>116.677309,39.918104,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>新开问题调研-蜜雪冰城(管庄地铁口店)</name>
+<description><![CDATA[位置:通州万达-北运河-玉桥; 标签:新开问题调研; 地址:双桥东路杨闸路口西侧平房02室; 小组:北京三区7; BDM:李赫; BD:左名扬; 商圈:-; 经营大类:-; 本月GMV:0.00; 线下GMV:0.00; 商品数:0; 搜索次数:8<br/><a href="https://uri.amap.com/marker?position=116.600414%2C39.908421&name=%E6%96%B0%E5%BC%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E8%9C%9C%E9%9B%AA%E5%86%B0%E5%9F%8E%28%E7%AE%A1%E5%BA%84%E5%9C%B0%E9%93%81%E5%8F%A3%E5%BA%97%29&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#orange</styleUrl>
+<Point><coordinates>116.600414,39.908421,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>动销问题调研-爆十三新中式茶饮(北京·通州阳光新生活广场店)</name>
+<description><![CDATA[位置:通州万达-北运河-玉桥; 标签:动销问题调研; 地址:翠景北里1号楼(阳光新生活广场)3层商业301-L316B、L317B、L318、L366; 小组:北京三区1; BDM:郝伍彩; BD:刘杨; 商圈:综合商场&amp;日用商超热门景点; 经营大类:核心商业区休闲文旅区; 本月GMV:0.00; 线下GMV:0.00; 商品数:22; 搜索次数:8<br/><a href="https://uri.amap.com/marker?position=116.656639%2C39.889742&name=%E5%8A%A8%E9%94%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E7%88%86%E5%8D%81%E4%B8%89%E6%96%B0%E4%B8%AD%E5%BC%8F%E8%8C%B6%E9%A5%AE%28%E5%8C%97%E4%BA%AC%C2%B7%E9%80%9A%E5%B7%9E%E9%98%B3%E5%85%89%E6%96%B0%E7%94%9F%E6%B4%BB%E5%B9%BF%E5%9C%BA%E5%BA%97%29&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#red</styleUrl>
+<Point><coordinates>116.656639,39.889742,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>动销问题调研-喜芙来低糖低脂蛋糕(通州店)</name>
+<description><![CDATA[位置:通州万达-北运河-玉桥; 标签:动销问题调研; 地址:永顺镇新潞苑南大街甲560号新潞运河文创园B8-1号; 小组:北京四区2; BDM:王子含; BD:丘杰辉; 商圈:热点商业区块; 经营大类:核心商业区; 本月GMV:0.00; 线下GMV:0.00; 商品数:16; 搜索次数:119<br/><a href="https://uri.amap.com/marker?position=116.670823%2C39.926062&name=%E5%8A%A8%E9%94%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E5%96%9C%E8%8A%99%E6%9D%A5%E4%BD%8E%E7%B3%96%E4%BD%8E%E8%84%82%E8%9B%8B%E7%B3%95%28%E9%80%9A%E5%B7%9E%E5%BA%97%29&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#red</styleUrl>
+<Point><coordinates>116.670823,39.926062,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>动销问题调研-甜小惠·提拉米苏低糖动奶·手工现做</name>
+<description><![CDATA[位置:通州万达-北运河-玉桥; 标签:动销问题调研; 地址:云景东里18号楼1层3-7; 小组:北京三区1; BDM:郝伍彩; BD:周奇; 商圈:综合商场&amp;日用商超热门景点; 经营大类:核心商业区休闲文旅区; 本月GMV:0.00; 线下GMV:0.00; 商品数:13; 搜索次数:4<br/><a href="https://uri.amap.com/marker?position=116.667444%2C39.880935&name=%E5%8A%A8%E9%94%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E7%94%9C%E5%B0%8F%E6%83%A0%C2%B7%E6%8F%90%E6%8B%89%E7%B1%B3%E8%8B%8F%E4%BD%8E%E7%B3%96%E5%8A%A8%E5%A5%B6%C2%B7%E6%89%8B%E5%B7%A5%E7%8E%B0%E5%81%9A&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#red</styleUrl>
+<Point><coordinates>116.667444,39.880935,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>动销问题调研-奶香铺子(果园大街店)</name>
+<description><![CDATA[位置:通州万达-北运河-玉桥; 标签:动销问题调研; 地址:北苑街道果园大街19号果园东区; 小组:北京三区1; BDM:郝伍彩; BD:张秀; 商圈:综合商场&amp;日用商超商业街/步行街&amp;集市; 经营大类:核心商业区核心商业区; 本月GMV:0.00; 线下GMV:0.00; 商品数:9; 搜索次数:9<br/><a href="https://uri.amap.com/marker?position=116.654625%2C39.893772&name=%E5%8A%A8%E9%94%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E5%A5%B6%E9%A6%99%E9%93%BA%E5%AD%90%28%E6%9E%9C%E5%9B%AD%E5%A4%A7%E8%A1%97%E5%BA%97%29&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#red</styleUrl>
+<Point><coordinates>116.654625,39.893772,0</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>动销问题调研-执壶本草堂</name>
+<description><![CDATA[位置:通州万达-北运河-玉桥; 标签:动销问题调研; 地址:杨庄街道怡乐园二区; 小组:北京三区8; BDM:闻常德; BD:张云龙; 商圈:综合商场&amp;日用商超商业街/步行街&amp;集市; 经营大类:核心商业区核心商业区; 本月GMV:0.00; 线下GMV:0.00; 商品数:8; 搜索次数:14<br/><a href="https://uri.amap.com/marker?position=116.636501%2C39.886236&name=%E5%8A%A8%E9%94%80%E9%97%AE%E9%A2%98%E8%B0%83%E7%A0%94-%E6%89%A7%E5%A3%B6%E6%9C%AC%E8%8D%89%E5%A0%82&src=codex.poi.visit">打开高德标记</a>]]></description>
+<styleUrl>#red</styleUrl>
+<Point><coordinates>116.636501,39.886236,0</coordinates></Point>
+</Placemark>
+</Folder>
+</Document></kml>

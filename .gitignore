@@ -1,0 +1,7 @@
+*.log
+*.pid
+public_url.txt
+localtunnel*.log
+map_server*.log
+map_qrcode.png
+.DS_Store
