@@ -3,6 +3,7 @@ import html
 import json
 import math
 import re
+import subprocess
 import urllib.parse
 import zipfile
 from pathlib import Path
@@ -57,38 +58,15 @@ def poi_key(point):
 
 
 def normalize_existing(point):
-    city = clean(point.get("城市"))
-    position = clean(point.get("位置"))
-    color = "#2563eb" if city == "北京" else "#16a34a"
-    return {
-        "城市": city,
-        "位置": position,
-        "来源": "原位置点位",
-        "POI名称": clean(point.get("POI名称")),
-        "地址": clean(point.get("地址")),
-        "经度": float(point.get("经度")),
-        "纬度": float(point.get("纬度")),
-        "小组": clean(point.get("小组")),
-        "BDM": clean(point.get("BDM")),
-        "BD": clean(point.get("BD")),
-        "商家ID": clean(point.get("商家ID")),
-        "门店ID": clean(point.get("门店ID")),
-        "品牌ID": clean(point.get("品牌ID")),
-        "POI ID": clean(point.get("POI ID")),
-        "商圈类型": clean(point.get("商圈类型")),
-        "经营大类": clean(point.get("经营大类")),
-        "营业状态": clean(point.get("营业状态")),
-        "是否认领": clean(point.get("是否认领")),
-        "是否在售": clean(point.get("是否在售")),
-        "是否动销": clean(point.get("是否动销")),
-        "本月GMV": clean_number(point.get("本月GMV")),
-        "线下GMV": clean_number(point.get("线下GMV")),
-        "商品数": clean_number(point.get("商品数")),
-        "搜索次数": clean_number(point.get("搜索次数")),
-        "围栏名称": clean(point.get("围栏名称")),
-        "颜色值": color,
-        "浅色值": "#dbeafe" if city == "北京" else "#dcfce7",
-    }
+    normalized = dict(point)
+    normalized["来源"] = "原拜访点位"
+    normalized["经度"] = float(point.get("经度"))
+    normalized["纬度"] = float(point.get("纬度"))
+    normalized.setdefault("颜色值", "#2563eb")
+    normalized.setdefault("浅色值", "#dbeafe")
+    normalized.setdefault("位置显示", f"{clean(point.get('城市'))}｜{clean(point.get('位置'))}")
+    normalized.setdefault("标注标题", f"{clean(point.get('调研标签'))}｜{clean(point.get('POI名称'))}")
+    return normalized
 
 
 def point_from_row(row):
@@ -130,7 +108,12 @@ def point_from_row(row):
 
 
 def load_existing_points():
-    text = INDEX.read_text(encoding="utf-8")
+    text = subprocess.check_output(
+        ["git", "show", "8fd13b1:index.html"],
+        cwd=ROOT,
+        text=True,
+        encoding="utf-8",
+    )
     match = re.search(r"const points = (\[.*?\]);\nconst cityOrder", text, re.S)
     if not match:
         raise RuntimeError("Cannot find existing points array")
@@ -197,8 +180,10 @@ def unique_positions(points):
 
 def render_index(points, positions):
     city_counts = {city: sum(1 for p in points if p["城市"] == city) for city in ["北京", "郑州"]}
-    title = "北京重点点位 + 郑州单计全量 POI 地图"
-    subtitle = f"{len(points)} 个点位｜郑州单计全量 1210 个｜无重复 POI 标记"
+    title = "北京 + 郑州单计 POI 拜访地图"
+    tagged_total = sum(1 for p in points if clean(p.get("来源")) == "原拜访点位")
+    new_total = sum(1 for p in points if clean(p.get("来源")) == "郑州单计全量")
+    subtitle = f"{len(points)} 个点位｜原拜访点位 {tagged_total} 个｜新增郑州单计 {new_total} 个"
     points_json = json.dumps(points, ensure_ascii=False, separators=(",", ":"))
     positions_json = json.dumps(positions, ensure_ascii=False, separators=(",", ":"))
     return f"""<!doctype html>
@@ -223,10 +208,12 @@ def render_index(points, positions):
   .section-title {{ font-size:12px; color:var(--muted); margin-bottom:8px; }}
   .buttons {{ display:grid; gap:8px; }}
   .city-row {{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }}
-  .position-btn, .city-btn, .utility-btn {{ appearance:none; border:1px solid var(--line); background:white; border-radius:8px; color:var(--text); cursor:pointer; }}
+  .label-row {{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }}
+  .position-btn, .label-btn, .city-btn, .utility-btn {{ appearance:none; border:1px solid var(--line); background:white; border-radius:8px; color:var(--text); cursor:pointer; }}
   .position-btn {{ padding:9px 10px; font-size:13px; line-height:1.25; text-align:left; }}
-  .city-btn {{ padding:9px 8px; text-align:center; font-size:12px; }}
-  .position-btn.active, .city-btn.active {{ border-color:#16a34a; box-shadow:inset 0 0 0 1px #16a34a; background:#f0fdf4; }}
+  .label-btn, .city-btn {{ padding:9px 8px; text-align:center; font-size:12px; }}
+  .position-btn.active, .city-btn.active {{ border-color:#2563eb; box-shadow:inset 0 0 0 1px #2563eb; background:#eff6ff; }}
+  .label-btn.off {{ opacity:.42; filter:grayscale(.7); }}
   .dot {{ display:inline-block; width:9px; height:9px; border-radius:999px; margin-right:5px; vertical-align:0; }}
   .stats {{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }}
   .stat {{ border:1px solid var(--line); border-radius:8px; background:white; padding:8px; }}
@@ -235,6 +222,11 @@ def render_index(points, positions):
   .utility-row {{ display:flex; gap:8px; }}
   .utility-btn {{ flex:1; text-align:center; padding:9px 8px; font-size:13px; }}
   .legend {{ display:grid; gap:6px; color:#334155; font-size:12px; }}
+  .marker-label {{ border:0; background:transparent; }}
+  .marker-wrap {{ display:flex; align-items:center; transform:translate(-10px,-10px); filter:drop-shadow(0 3px 5px rgba(15,23,42,.25)); }}
+  .pin {{ width:18px; height:18px; border-radius:999px 999px 999px 0; transform:rotate(-45deg); border:2px solid white; flex:0 0 18px; }}
+  .pin::after {{ content:''; display:block; width:6px; height:6px; margin:4px; border-radius:999px; background:white; opacity:.95; }}
+  .pin-text {{ margin-left:5px; padding:3px 6px; border-radius:999px; background:rgba(255,255,255,.93); border:1px solid rgba(148,163,184,.45); color:#0f172a; font-size:11px; font-weight:650; max-width:170px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; transform:translateY(-2px); }}
   .leaflet-popup-content {{ min-width:270px; max-width:340px; margin:12px; font-size:13px; line-height:1.55; }}
   .popup-title {{ font-weight:760; font-size:14px; line-height:1.35; margin-bottom:6px; }}
   .popup-tag {{ display:inline-block; padding:2px 7px; border-radius:999px; font-size:12px; margin-bottom:6px; }}
@@ -248,8 +240,9 @@ def render_index(points, positions):
     .panel-body {{ max-height:48vh; padding:10px 12px 12px; }}
     .panel.collapsed .panel-body {{ display:none; }}
     .title {{ font-size:15px; }} .subtitle {{ font-size:11px; }}
-    .city-row, .stats {{ grid-template-columns:1fr; }}
+    .city-row, .label-row, .stats {{ grid-template-columns:1fr; }}
     .position-btn {{ padding:8px 9px; }}
+    .pin-text {{ max-width:120px; font-size:10px; }}
     .leaflet-control-zoom {{ margin-top:96px !important; }}
   }}
 </style>
@@ -267,15 +260,18 @@ def render_index(points, positions):
   <div class="panel-body">
     <div class="section"><div class="section-title">城市</div><div class="city-row" id="cityButtons"></div></div>
     <div class="section"><div class="section-title">位置 / 来源</div><div class="buttons" id="positionButtons"></div></div>
+    <div class="section"><div class="section-title">调研标签</div><div class="label-row" id="labelButtons"></div></div>
     <div class="section"><div class="section-title">当前展示</div><div class="stats">
       <div class="stat"><b id="shownCount">{len(points)}</b><span>展示点位</span></div>
       <div class="stat"><b id="positionCount">{len(positions)}</b><span>位置/来源</span></div>
-      <div class="stat"><b id="cityCount">2</b><span>城市数</span></div>
+      <div class="stat"><b id="labelCount">3</b><span>标签数</span></div>
     </div></div>
     <div class="section utility-row"><button class="utility-btn" id="showAll">看全部</button><button class="utility-btn" id="fitCurrent">适配视野</button></div>
     <div class="legend">
       <div><span class="dot" style="background:#2563eb"></span>北京：原重点拜访点位</div>
-      <div><span class="dot" style="background:#16a34a"></span>郑州：面饮明细中全部单计商家，按 POI 去重</div>
+      <div><span class="dot" style="background:#f97316"></span>新开问题调研：原拜访点位标签</div>
+      <div><span class="dot" style="background:#dc2626"></span>动销问题调研：原拜访点位标签</div>
+      <div><span class="dot" style="background:#16a34a"></span>郑州新增单计门店：绿色圆点，按 POI 去重，不参与调研标签</div>
     </div>
   </div>
 </aside>
@@ -285,18 +281,27 @@ const points = {points_json};
 const cityOrder = ['全部','北京','郑州'];
 const cityCounts = {{'全部': points.length, '北京': {city_counts.get('北京', 0)}, '郑州': {city_counts.get('郑州', 0)}}};
 const positionOrder = {positions_json};
+const labelOrder = ["扫码/营销调研", "新开问题调研", "动销问题调研"];
+const labelColors = {{"扫码/营销调研": "#2563eb", "新开问题调研": "#f97316", "动销问题调研": "#dc2626"}};
 let activeCity = '全部';
 let activePosition = '全部';
+const activeLabels = new Set(labelOrder);
 const map = L.map('map', {{ zoomControl:true, preferCanvas:true }}).setView([34.75, 113.65], 8);
 L.tileLayer('https://webrd0{{s}}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={{x}}&y={{y}}&z={{z}}', {{ subdomains:['1','2','3','4'], attribution:'高德地图' }}).addTo(map);
 const layer = L.layerGroup().addTo(map);
 const markers = [];
 function esc(value) {{ return String(value ?? '').replace(/[&<>'"]/g, ch => ({{'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}}[ch])); }}
 function keyFor(p) {{ return `${{p['城市']}}｜${{p['位置']}}`; }}
-function inSelection(p) {{ return (activeCity === '全部' || p['城市'] === activeCity) && (activePosition === '全部' || keyFor(p) === activePosition); }}
+function hasResearchLabel(p) {{ return labelOrder.includes(p['调研标签']); }}
+function inSelection(p) {{
+  const cityMatch = activeCity === '全部' || p['城市'] === activeCity;
+  const positionMatch = activePosition === '全部' || keyFor(p) === activePosition;
+  const labelMatch = !hasResearchLabel(p) || activeLabels.has(p['调研标签']);
+  return cityMatch && positionMatch && labelMatch;
+}}
 function amapMarkerLink(p) {{ return `https://uri.amap.com/marker?position=${{Number(p['经度']).toFixed(6)}}%2C${{Number(p['纬度']).toFixed(6)}}&name=${{encodeURIComponent(p['POI名称'])}}&src=codex.poi.visit`; }}
 function popupHtml(p) {{
-  const tag = p['来源'] === '郑州单计全量' ? '郑州单计商家' : `${{p['城市']}}重点点位`;
+  const tag = p['来源'] === '郑州单计全量' ? '郑州新增单计门店' : p['调研标签'];
   return `<div class="popup-title">${{esc(p['城市'])}}｜${{esc(p['POI名称'])}}</div>
     <div class="popup-tag" style="background:${{p['浅色值']}};color:${{p['颜色值']}}">${{esc(tag)}}</div>
     <div class="popup-grid">
@@ -315,15 +320,13 @@ function popupHtml(p) {{
     </div>
     <a class="amap-link" target="_blank" rel="noopener" href="${{esc(amapMarkerLink(p))}}">在高德 App 打开此点</a>`;
 }}
+function markerIcon(p) {{
+  return L.divIcon({{ className:'marker-label', html:`<div class="marker-wrap"><div class="pin" style="background:${{p['颜色值']}}"></div><div class="pin-text">${{esc(p['POI名称'])}}</div></div>`, iconSize:[190,28], iconAnchor:[10,20], popupAnchor:[8,-14] }});
+}}
 points.forEach(p => {{
-  const marker = L.circleMarker([p['纬度'], p['经度']], {{
-    radius: p['来源'] === '郑州单计全量' ? 4 : 6,
-    color: '#ffffff',
-    weight: 1,
-    fillColor: p['颜色值'],
-    fillOpacity: .86,
-    title: `${{p['城市']}}｜${{p['POI名称']}}`
-  }}).bindPopup(popupHtml(p));
+  const marker = p['来源'] === '郑州单计全量'
+    ? L.circleMarker([p['纬度'], p['经度']], {{ radius:4, color:'#ffffff', weight:1, fillColor:p['颜色值'], fillOpacity:.86, title:`${{p['城市']}}｜新增单计｜${{p['POI名称']}}` }}).bindPopup(popupHtml(p))
+    : L.marker([p['纬度'], p['经度']], {{ icon:markerIcon(p), title:`${{p['城市']}}｜${{p['调研标签']}}｜${{p['POI名称']}}` }}).bindPopup(popupHtml(p));
   marker._pointData = p; markers.push(marker);
 }});
 function selectedPoints() {{ return points.filter(inSelection); }}
@@ -333,7 +336,7 @@ function renderMarkers(fit=true) {{
   markers.forEach(m => {{ if (inSelection(m._pointData)) layer.addLayer(m); }});
   document.getElementById('shownCount').textContent = selected.length;
   document.getElementById('positionCount').textContent = new Set(selected.map(keyFor)).size;
-  document.getElementById('cityCount').textContent = new Set(selected.map(p => p['城市'])).size;
+  document.getElementById('labelCount').textContent = new Set(selected.filter(hasResearchLabel).map(p => p['调研标签'])).size;
   updateButtons();
   if (fit && selected.length) {{
     const bounds = L.latLngBounds(selected.map(p => [p['纬度'], p['经度']]));
@@ -343,6 +346,7 @@ function renderMarkers(fit=true) {{
 function updateButtons() {{
   document.querySelectorAll('[data-city]').forEach(btn => btn.classList.toggle('active', btn.dataset.city === activeCity));
   document.querySelectorAll('[data-position]').forEach(btn => btn.classList.toggle('active', btn.dataset.position === activePosition));
+  document.querySelectorAll('[data-label]').forEach(btn => btn.classList.toggle('off', !activeLabels.has(btn.dataset.label)));
 }}
 function makeCityButtons() {{
   const wrap = document.getElementById('cityButtons');
@@ -365,10 +369,19 @@ function makePositionButtons() {{
     wrap.appendChild(btn);
   }});
 }}
-document.getElementById('showAll').onclick = () => {{ activeCity='全部'; activePosition='全部'; renderMarkers(true); }};
+function makeLabelButtons() {{
+  const wrap = document.getElementById('labelButtons');
+  labelOrder.forEach(label => {{
+    const btn = document.createElement('button'); btn.className = 'label-btn'; btn.dataset.label = label;
+    btn.innerHTML = `<span class="dot" style="background:${{labelColors[label]}}"></span>${{esc(label)}}`;
+    btn.onclick = () => {{ if (activeLabels.has(label) && activeLabels.size > 1) activeLabels.delete(label); else activeLabels.add(label); renderMarkers(true); }};
+    wrap.appendChild(btn);
+  }});
+}}
+document.getElementById('showAll').onclick = () => {{ activeCity='全部'; activePosition='全部'; labelOrder.forEach(l => activeLabels.add(l)); renderMarkers(true); }};
 document.getElementById('fitCurrent').onclick = () => renderMarkers(true);
 document.getElementById('togglePanel').onclick = () => document.getElementById('panel').classList.toggle('collapsed');
-makeCityButtons(); makePositionButtons(); renderMarkers(true);
+makeCityButtons(); makePositionButtons(); makeLabelButtons(); renderMarkers(true);
 </script>
 </body>
 </html>
