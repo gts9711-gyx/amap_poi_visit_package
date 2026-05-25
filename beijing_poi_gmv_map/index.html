@@ -57,6 +57,52 @@
       grid-template-columns: repeat(4, 170px);
       gap: 10px;
     }
+    .controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 0 0 14px;
+    }
+    .period-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .period-tab {
+      appearance: none;
+      border: 1px solid #bfdfff;
+      border-radius: 8px;
+      padding: 9px 14px;
+      color: #16456f;
+      background: #ffffff;
+      font-size: 15px;
+      font-weight: 750;
+      cursor: pointer;
+    }
+    .period-tab.active {
+      color: #ffffff;
+      background: #0759a5;
+      border-color: #0759a5;
+      box-shadow: 0 10px 24px rgba(7, 89, 165, .2);
+    }
+    .industry-filter {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .industry-filter select {
+      min-width: 160px;
+      border: 1px solid #bfdfff;
+      border-radius: 8px;
+      padding: 9px 12px;
+      color: #16456f;
+      background: white;
+      font: inherit;
+    }
     .metric {
       border: 1px solid var(--line);
       border-radius: 8px;
@@ -120,6 +166,13 @@
         <div class="metric"><strong id="metricBubble">-</strong><span id="metricBubbleLabel">核销 GMV</span></div>
       </section>
     </header>
+    <section class="controls">
+      <div class="period-tabs" id="periodTabs"></div>
+      <label class="industry-filter">
+        行业
+        <select id="industrySelect"></select>
+      </label>
+    </section>
     <section class="chart-shell">
       <div id="chart"></div>
       <div class="note" id="dataNote">数据口径：Excel 字段「物理商圈所在行政区」「物理商圈名称」「全量有效POI数」「已开发有效POI_近1d核销GMV」，业务口径按“核销 GMV”展示。底图来源：DataV GeoAtlas 北京行政区 GeoJSON。</div>
@@ -331,6 +384,86 @@
       };
     }
 
+    function getActiveDataset(processed, period, industry) {
+      if (!processed.datasets) return processed;
+      const periodData = processed.datasets[period] || processed.datasets[processed.meta.defaultPeriod] || {};
+      return periodData[industry] || periodData["全部行业"] || Object.values(periodData)[0];
+    }
+
+    function renderControls(processed, chart) {
+      const meta = processed.meta || {};
+      const periods = processed.periods || meta.periods || [];
+      const industries = processed.industries || meta.industries || ["全部行业"];
+      let activePeriod = meta.defaultPeriod || periods[0];
+      let activeIndustry = meta.defaultIndustry || industries[0];
+      const tabs = document.getElementById("periodTabs");
+      const select = document.getElementById("industrySelect");
+
+      tabs.innerHTML = "";
+      periods.forEach(period => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "period-tab";
+        btn.textContent = period;
+        btn.dataset.period = period;
+        btn.onclick = () => {
+          activePeriod = period;
+          renderCurrent();
+        };
+        tabs.appendChild(btn);
+      });
+
+      select.innerHTML = "";
+      industries.forEach(industry => {
+        const option = document.createElement("option");
+        option.value = industry;
+        option.textContent = industry;
+        select.appendChild(option);
+      });
+      select.value = activeIndustry;
+      select.onchange = () => {
+        activeIndustry = select.value;
+        renderCurrent();
+      };
+
+      function renderCurrent() {
+        const dataset = getActiveDataset(processed, activePeriod, activeIndustry);
+        document.querySelectorAll(".period-tab").forEach(btn => {
+          btn.classList.toggle("active", btn.dataset.period === activePeriod);
+        });
+        const merged = {
+          ...dataset,
+          meta: {
+            ...(processed.meta || {}),
+            ...(dataset.meta || {}),
+            title: `${processed.meta.title || "北京市分时段商圈交易情况"}｜${activePeriod}`,
+            activePeriod,
+            activeIndustry,
+          }
+        };
+        applyMeta(merged);
+        chart.setOption(buildOption(merged), true);
+      }
+
+      renderCurrent();
+    }
+
+    function applyMeta(processed) {
+      const meta = processed.meta || {};
+      window.__MAP_META__ = meta;
+      document.title = `${meta.title || "北京市 POI 数与核销 GMV 地图"}`;
+      document.querySelector(".eyebrow").textContent = meta.eyebrow || "北京行政区 POI 热力 + 商圈核销 GMV 气泡";
+      document.querySelector("h1").textContent = meta.title || "北京市全量有效 POI 与核销 GMV 分布";
+      document.querySelector(".subtitle").textContent = `行政区底色按${meta.heatLabel || "底图指标"}聚合渲染；紫色气泡为物理商圈，大小按${meta.bubbleLabel || "气泡指标"}映射。当前视图：${meta.activePeriod || "全部时段"} / ${meta.activeIndustry || "全部行业"}。`;
+      document.getElementById("dataNote").textContent = `数据口径：飞书表四个 sheet 对应四张时段地图；Excel 字段「${meta.districtColumn || "行政区"}」「${meta.tradeAreaColumn || "商圈"}」「${meta.heatColumn || "门店/POI数"}」「${meta.bubbleColumn || "核销GMV"}」。底图来源：DataV GeoAtlas 北京行政区 GeoJSON。`;
+      document.getElementById("metricDistricts").textContent = fmt(meta.districtCount);
+      document.getElementById("metricAreas").textContent = fmt(meta.tradeAreaRows);
+      document.getElementById("metricHeat").textContent = fmt(meta.heatTotal ?? meta.poiTotal);
+      document.getElementById("metricHeatLabel").textContent = meta.heatLabel || "底图指标";
+      document.getElementById("metricBubble").textContent = fmtByMeta(meta.bubbleTotal ?? meta.gmvTotal, meta.bubbleMetricFormat || "yi");
+      document.getElementById("metricBubbleLabel").textContent = meta.bubbleLabel || "气泡指标";
+    }
+
     async function main() {
       const embeddedGeojson = window.BEIJING_GEOJSON;
       const embeddedProcessed = window.BEIJING_PROCESSED;
@@ -341,21 +474,8 @@
           fetch("./data/processed.json").then(r => r.json())
         ]);
       echarts.registerMap("beijing", geojson);
-      window.__MAP_META__ = processed.meta || {};
-      const meta = processed.meta || {};
-      document.title = `${meta.title || "北京市 POI 数与核销 GMV 地图"}`;
-      document.querySelector(".eyebrow").textContent = meta.eyebrow || "北京行政区 POI 热力 + 商圈核销 GMV 气泡";
-      document.querySelector("h1").textContent = meta.title || "北京市全量有效 POI 与核销 GMV 分布";
-      document.querySelector(".subtitle").textContent = `行政区底色按${meta.heatLabel || "底图指标"}聚合渲染；紫色气泡为物理商圈，大小按${meta.bubbleLabel || "气泡指标"}映射。商圈位置优先使用公共地理编码，识别不到时回退到所属行政区 AOI 内分散铺点。`;
-      document.getElementById("dataNote").textContent = `数据口径：Excel 字段「${meta.districtColumn || "行政区"}」「${meta.tradeAreaColumn || "商圈"}」「${meta.heatColumn || "底图指标"}」「${meta.bubbleColumn || "气泡指标"}」。底图来源：DataV GeoAtlas 北京行政区 GeoJSON。`;
-      document.getElementById("metricDistricts").textContent = fmt(processed.meta.districtCount);
-      document.getElementById("metricAreas").textContent = fmt(processed.meta.tradeAreaRows);
-      document.getElementById("metricHeat").textContent = fmt(processed.meta.heatTotal ?? processed.meta.poiTotal);
-      document.getElementById("metricHeatLabel").textContent = meta.heatLabel || "底图指标";
-      document.getElementById("metricBubble").textContent = fmtByMeta(processed.meta.bubbleTotal ?? processed.meta.gmvTotal, meta.bubbleMetricFormat || "yi");
-      document.getElementById("metricBubbleLabel").textContent = meta.bubbleLabel || "气泡指标";
       const chart = echarts.init(document.getElementById("chart"), null, { renderer: "canvas" });
-      chart.setOption(buildOption(processed));
+      renderControls(processed, chart);
       window.__MAP_READY__ = true;
       window.__CHART__ = chart;
     }
