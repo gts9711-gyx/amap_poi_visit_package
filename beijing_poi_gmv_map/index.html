@@ -116,13 +116,13 @@
       <section class="metrics">
         <div class="metric"><strong id="metricDistricts">-</strong><span>行政区</span></div>
         <div class="metric"><strong id="metricAreas">-</strong><span>物理商圈</span></div>
-        <div class="metric"><strong id="metricPoi">-</strong><span>全量有效 POI</span></div>
-        <div class="metric"><strong id="metricGmv">-</strong><span>核销 GMV</span></div>
+        <div class="metric"><strong id="metricHeat">-</strong><span id="metricHeatLabel">全量有效 POI</span></div>
+        <div class="metric"><strong id="metricBubble">-</strong><span id="metricBubbleLabel">核销 GMV</span></div>
       </section>
     </header>
     <section class="chart-shell">
       <div id="chart"></div>
-      <div class="note">数据口径：Excel 字段「物理商圈所在行政区」「物理商圈名称」「全量有效POI数」「已开发有效POI_近1d核销GMV」，业务口径按“核销 GMV”展示。底图来源：DataV GeoAtlas 北京行政区 GeoJSON。</div>
+      <div class="note" id="dataNote">数据口径：Excel 字段「物理商圈所在行政区」「物理商圈名称」「全量有效POI数」「已开发有效POI_近1d核销GMV」，业务口径按“核销 GMV”展示。底图来源：DataV GeoAtlas 北京行政区 GeoJSON。</div>
     </section>
   </main>
 
@@ -146,6 +146,17 @@
       return `${yi.toFixed(2)}亿`;
     }
 
+    function fmtWan(value) {
+      const wan = Math.floor((Number(value || 0) / 10000) * 100) / 100;
+      return `${wan.toFixed(2)}万`;
+    }
+
+    function fmtByMeta(value, format) {
+      if (format === "yi") return fmtYi(value);
+      if (format === "wan") return fmtWan(value);
+      return fmt(value);
+    }
+
     function purpleForGmv(gmv, maxGmv) {
       const max = Number(maxGmv || 1);
       const ratio = Math.max(0, Math.min(1, Math.sqrt(Number(gmv || 0)) / Math.sqrt(max)));
@@ -165,15 +176,25 @@
 
     function districtTooltip(params) {
       const data = params.data || {};
+      const meta = window.__MAP_META__ || {};
+      const heatLabel = meta.heatLabel || "全量有效 POI";
+      const bubbleLabel = meta.bubbleLabel || "核销 GMV";
+      const heatValue = data.heat ?? data.poi;
+      const bubbleValue = data.bubble ?? data.gmv;
       if (params.seriesType === "scatter") {
-        return `<b>${data.name}</b><br/>行政区：${data.district}<br/>核销 GMV：${fmtMoney(data.gmv)}<br/>全量有效 POI：${fmt(data.poi)}`;
+        return `<b>${data.name}</b><br/>行政区：${data.district}<br/>${bubbleLabel}：${fmtMoney(bubbleValue)}<br/>${heatLabel}：${fmt(heatValue)}`;
       }
-      return `<b>${params.name}</b><br/>全量有效 POI：${fmt(data.poi || params.value)}<br/>核销 GMV：${fmtMoney(data.gmv)}<br/>物理商圈数：${fmt(data.tradeAreaCount)}`;
+      return `<b>${params.name}</b><br/>${heatLabel}：${fmt(heatValue || params.value)}<br/>${bubbleLabel}：${fmtMoney(bubbleValue)}<br/>物理商圈数：${fmt(data.tradeAreaCount)}`;
     }
 
     function buildOption(processed) {
-      const maxPoi = processed.meta.maxDistrictPoi;
-      const minPoi = processed.meta.minDistrictPoi;
+      const meta = processed.meta || {};
+      const maxHeat = meta.maxDistrictHeat ?? meta.maxDistrictPoi;
+      const minHeat = meta.minDistrictHeat ?? meta.minDistrictPoi;
+      const heatLabel = meta.heatLabel || "全量有效 POI";
+      const bubbleLabel = meta.bubbleLabel || "核销 GMV";
+      const heatLegendHigh = meta.heatLegendHigh || "POI 多";
+      const heatLegendLow = meta.heatLegendLow || "POI 少";
       return {
         animation: false,
         backgroundColor: "#ffffff",
@@ -188,13 +209,13 @@
         visualMap: {
           type: "continuous",
           seriesIndex: 0,
-          min: minPoi,
-          max: maxPoi,
+          min: minHeat,
+          max: maxHeat,
           left: 28,
           top: 34,
           itemWidth: 18,
           itemHeight: 210,
-          text: ["POI 多", "POI 少"],
+          text: [heatLegendHigh, heatLegendLow],
           textStyle: { color: "#385168", fontSize: 13 },
           calculable: false,
           inRange: {
@@ -224,7 +245,7 @@
         },
         series: [
           {
-            name: "全量有效 POI",
+            name: heatLabel,
             type: "map",
             map: "beijing",
             geoIndex: 0,
@@ -232,14 +253,14 @@
             zlevel: 1
           },
           {
-            name: "物理商圈核销 GMV",
+            name: `物理商圈${bubbleLabel}`,
             type: "scatter",
             coordinateSystem: "geo",
             data: processed.scatter,
             symbol: "circle",
             symbolSize: (value, params) => params.data.symbolSize,
             itemStyle: {
-              color: (params) => purpleForGmv(params.data.gmv, processed.meta.maxGmv),
+              color: (params) => purpleForGmv(params.data.bubble ?? params.data.gmv, meta.maxBubble ?? meta.maxGmv),
               borderColor: "#581c87",
               borderWidth: 1.2,
               shadowBlur: 7,
@@ -297,7 +318,7 @@
             right: 30,
             bottom: 28,
             children: [
-              { type: "text", left: 0, top: 0, style: { text: "气泡大小：核销 GMV", fill: "#385168", font: "14px sans-serif" } },
+              { type: "text", left: 0, top: 0, style: { text: `气泡大小：${bubbleLabel}`, fill: "#385168", font: "14px sans-serif" } },
               { type: "circle", left: 22, top: 42, shape: { r: 5 }, style: { fill: "rgba(243,232,255,.62)", stroke: "#581c87" } },
               { type: "circle", left: 84, top: 35, shape: { r: 12 }, style: { fill: "rgba(168,85,247,.72)", stroke: "#581c87" } },
               { type: "circle", left: 170, top: 25, shape: { r: 24 }, style: { fill: "rgba(88,28,135,.86)", stroke: "#581c87" } },
@@ -320,10 +341,19 @@
           fetch("./data/processed.json").then(r => r.json())
         ]);
       echarts.registerMap("beijing", geojson);
+      window.__MAP_META__ = processed.meta || {};
+      const meta = processed.meta || {};
+      document.title = `${meta.title || "北京市 POI 数与核销 GMV 地图"}`;
+      document.querySelector(".eyebrow").textContent = meta.eyebrow || "北京行政区 POI 热力 + 商圈核销 GMV 气泡";
+      document.querySelector("h1").textContent = meta.title || "北京市全量有效 POI 与核销 GMV 分布";
+      document.querySelector(".subtitle").textContent = `行政区底色按${meta.heatLabel || "底图指标"}聚合渲染；紫色气泡为物理商圈，大小按${meta.bubbleLabel || "气泡指标"}映射。商圈位置优先使用公共地理编码，识别不到时回退到所属行政区 AOI 内分散铺点。`;
+      document.getElementById("dataNote").textContent = `数据口径：Excel 字段「${meta.districtColumn || "行政区"}」「${meta.tradeAreaColumn || "商圈"}」「${meta.heatColumn || "底图指标"}」「${meta.bubbleColumn || "气泡指标"}」。底图来源：DataV GeoAtlas 北京行政区 GeoJSON。`;
       document.getElementById("metricDistricts").textContent = fmt(processed.meta.districtCount);
       document.getElementById("metricAreas").textContent = fmt(processed.meta.tradeAreaRows);
-      document.getElementById("metricPoi").textContent = fmt(processed.meta.poiTotal);
-      document.getElementById("metricGmv").textContent = fmtYi(processed.meta.gmvTotal);
+      document.getElementById("metricHeat").textContent = fmt(processed.meta.heatTotal ?? processed.meta.poiTotal);
+      document.getElementById("metricHeatLabel").textContent = meta.heatLabel || "底图指标";
+      document.getElementById("metricBubble").textContent = fmtByMeta(processed.meta.bubbleTotal ?? processed.meta.gmvTotal, meta.bubbleMetricFormat || "yi");
+      document.getElementById("metricBubbleLabel").textContent = meta.bubbleLabel || "气泡指标";
       const chart = echarts.init(document.getElementById("chart"), null, { renderer: "canvas" });
       chart.setOption(buildOption(processed));
       window.__MAP_READY__ = true;
