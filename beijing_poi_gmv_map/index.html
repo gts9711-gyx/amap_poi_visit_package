@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>北京市 POI 数与核销 GMV 地图</title>
+  <style>
+    :root {
+      --text: #0f172a;
+      --muted: #64748b;
+      --line: #dbe7f3;
+      --blue: #0b5cad;
+      --bg: #f5f9fc;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background: var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+    .page {
+      width: 1800px;
+      height: 1120px;
+      margin: 0 auto;
+      padding: 34px 42px 30px;
+      background: linear-gradient(180deg, #f8fbff 0%, #eff6fb 100%);
+    }
+    .header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 18px;
+    }
+    .eyebrow {
+      margin: 0 0 8px;
+      color: #0369a1;
+      font-size: 18px;
+      font-weight: 760;
+    }
+    h1 {
+      margin: 0;
+      font-size: 42px;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+    .subtitle {
+      margin: 12px 0 0;
+      max-width: 980px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.5;
+    }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 170px);
+      gap: 10px;
+    }
+    .metric {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px 16px;
+      background: rgba(255, 255, 255, .82);
+      box-shadow: 0 12px 28px rgba(15, 60, 110, .08);
+    }
+    .metric strong {
+      display: block;
+      font-size: 27px;
+      line-height: 1.05;
+      color: #083f7d;
+    }
+    .metric span {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .chart-shell {
+      position: relative;
+      height: 934px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #ffffff;
+      box-shadow: 0 18px 42px rgba(15, 60, 110, .12);
+      overflow: hidden;
+    }
+    #chart {
+      width: 100%;
+      height: 100%;
+    }
+    .note {
+      position: absolute;
+      left: 24px;
+      bottom: 18px;
+      width: 520px;
+      border: 1px solid rgba(191, 219, 254, .9);
+      border-radius: 8px;
+      padding: 12px 14px;
+      color: #37526f;
+      background: rgba(248, 251, 255, .92);
+      font-size: 13px;
+      line-height: 1.5;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="header">
+      <div>
+      <p class="eyebrow">北京行政区 POI 热力 + 商圈核销 GMV 气泡</p>
+        <h1>北京市全量有效 POI 与核销 GMV 分布</h1>
+        <p class="subtitle">行政区底色按全量有效 POI 数聚合渲染；紫色气泡为物理商圈，大小按核销 GMV 映射。商圈位置优先使用公共地理编码，识别不到时回退到所属行政区 AOI 内分散铺点。</p>
+      </div>
+      <section class="metrics">
+        <div class="metric"><strong id="metricDistricts">-</strong><span>行政区</span></div>
+        <div class="metric"><strong id="metricAreas">-</strong><span>物理商圈</span></div>
+        <div class="metric"><strong id="metricPoi">-</strong><span>全量有效 POI</span></div>
+        <div class="metric"><strong id="metricGmv">-</strong><span>核销 GMV</span></div>
+      </section>
+    </header>
+    <section class="chart-shell">
+      <div id="chart"></div>
+      <div class="note">数据口径：Excel 字段「物理商圈所在行政区」「物理商圈名称」「全量有效POI数」「已开发有效POI_近1d核销GMV」，业务口径按“核销 GMV”展示。底图来源：DataV GeoAtlas 北京行政区 GeoJSON。</div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+  <script src="./data/beijing_districts.js"></script>
+  <script src="./data/processed.js"></script>
+  <script>
+    const formatter = new Intl.NumberFormat("zh-CN", { maximumFractionDigits: 0 });
+    const moneyFormatter = new Intl.NumberFormat("zh-CN", { maximumFractionDigits: 0 });
+
+    function fmt(value) {
+      return formatter.format(Number(value || 0));
+    }
+
+    function fmtMoney(value) {
+      return moneyFormatter.format(Number(value || 0));
+    }
+
+    function fmtYi(value) {
+      const yi = Math.floor((Number(value || 0) / 100000000) * 100) / 100;
+      return `${yi.toFixed(2)}亿`;
+    }
+
+    function purpleForGmv(gmv, maxGmv) {
+      const max = Number(maxGmv || 1);
+      const ratio = Math.max(0, Math.min(1, Math.sqrt(Number(gmv || 0)) / Math.sqrt(max)));
+      const stops = [
+        [243, 232, 255],
+        [196, 181, 253],
+        [147, 51, 234],
+        [88, 28, 135]
+      ];
+      const scaled = ratio * (stops.length - 1);
+      const idx = Math.min(stops.length - 2, Math.floor(scaled));
+      const t = scaled - idx;
+      const color = stops[idx].map((start, i) => Math.round(start + (stops[idx + 1][i] - start) * t));
+      const alpha = 0.58 + ratio * 0.28;
+      return `rgba(${color[0]},${color[1]},${color[2]},${alpha.toFixed(2)})`;
+    }
+
+    function districtTooltip(params) {
+      const data = params.data || {};
+      if (params.seriesType === "scatter") {
+        return `<b>${data.name}</b><br/>行政区：${data.district}<br/>核销 GMV：${fmtMoney(data.gmv)}<br/>全量有效 POI：${fmt(data.poi)}`;
+      }
+      return `<b>${params.name}</b><br/>全量有效 POI：${fmt(data.poi || params.value)}<br/>核销 GMV：${fmtMoney(data.gmv)}<br/>物理商圈数：${fmt(data.tradeAreaCount)}`;
+    }
+
+    function buildOption(processed) {
+      const maxPoi = processed.meta.maxDistrictPoi;
+      const minPoi = processed.meta.minDistrictPoi;
+      return {
+        animation: false,
+        backgroundColor: "#ffffff",
+        tooltip: {
+          trigger: "item",
+          confine: true,
+          borderColor: "#bfdbfe",
+          backgroundColor: "rgba(255,255,255,.96)",
+          textStyle: { color: "#0f172a", fontSize: 14 },
+          formatter: districtTooltip
+        },
+        visualMap: {
+          type: "continuous",
+          seriesIndex: 0,
+          min: minPoi,
+          max: maxPoi,
+          left: 28,
+          top: 34,
+          itemWidth: 18,
+          itemHeight: 210,
+          text: ["POI 多", "POI 少"],
+          textStyle: { color: "#385168", fontSize: 13 },
+          calculable: false,
+          inRange: {
+            color: ["#eaf5ff", "#bfdfff", "#79bdf2", "#2d8bd8", "#0759a5"]
+          }
+        },
+        geo: {
+          map: "beijing",
+          roam: true,
+          zoom: 1.08,
+          label: {
+            show: true,
+            color: "#16456f",
+            fontSize: 13,
+            fontWeight: 650
+          },
+          itemStyle: {
+            borderColor: "#ffffff",
+            borderWidth: 1.6,
+            areaColor: "#dbeafe"
+          },
+          emphasis: {
+            label: { color: "#082f49" },
+            itemStyle: { areaColor: "#7dd3fc" }
+          },
+          select: { disabled: true }
+        },
+        series: [
+          {
+            name: "全量有效 POI",
+            type: "map",
+            map: "beijing",
+            geoIndex: 0,
+            data: processed.districts,
+            zlevel: 1
+          },
+          {
+            name: "物理商圈核销 GMV",
+            type: "scatter",
+            coordinateSystem: "geo",
+            data: processed.scatter,
+            symbol: "circle",
+            symbolSize: (value, params) => params.data.symbolSize,
+            itemStyle: {
+              color: (params) => purpleForGmv(params.data.gmv, processed.meta.maxGmv),
+              borderColor: "#581c87",
+              borderWidth: 1.2,
+              shadowBlur: 7,
+              shadowColor: "rgba(126, 34, 206, .28)"
+            },
+            emphasis: {
+              scale: 1.18,
+              itemStyle: {
+                color: "rgba(147, 51, 234, .68)",
+                borderColor: "#3b0764",
+                borderWidth: 2
+              },
+              label: {
+                show: true,
+                formatter: "{b}",
+                position: "top",
+                color: "#0f172a",
+                backgroundColor: "rgba(255,255,255,.88)",
+                padding: [3, 5],
+                borderRadius: 4,
+                fontSize: 12
+              }
+            },
+            zlevel: 3
+          },
+          {
+            name: "行政区名称",
+            type: "scatter",
+            coordinateSystem: "geo",
+            data: processed.districts.map(item => ({
+              name: item.name,
+              value: [...item.center, item.poi]
+            })),
+            symbolSize: 1,
+            silent: true,
+            label: {
+              show: true,
+              formatter: "{b}",
+              position: "inside",
+              color: "#0b315f",
+              fontSize: 15,
+              fontWeight: 800,
+              textBorderColor: "rgba(255,255,255,.96)",
+              textBorderWidth: 4
+            },
+            itemStyle: {
+              color: "rgba(0,0,0,0)"
+            },
+            zlevel: 4
+          }
+        ],
+        graphic: [
+          {
+            type: "group",
+            right: 30,
+            bottom: 28,
+            children: [
+              { type: "text", left: 0, top: 0, style: { text: "气泡大小：核销 GMV", fill: "#385168", font: "14px sans-serif" } },
+              { type: "circle", left: 22, top: 42, shape: { r: 5 }, style: { fill: "rgba(243,232,255,.62)", stroke: "#581c87" } },
+              { type: "circle", left: 84, top: 35, shape: { r: 12 }, style: { fill: "rgba(168,85,247,.72)", stroke: "#581c87" } },
+              { type: "circle", left: 170, top: 25, shape: { r: 24 }, style: { fill: "rgba(88,28,135,.86)", stroke: "#581c87" } },
+              { type: "text", left: 6, top: 72, style: { text: "低", fill: "#64748b", font: "12px sans-serif" } },
+              { type: "text", left: 74, top: 72, style: { text: "中", fill: "#64748b", font: "12px sans-serif" } },
+              { type: "text", left: 156, top: 72, style: { text: "高", fill: "#64748b", font: "12px sans-serif" } }
+            ]
+          }
+        ]
+      };
+    }
+
+    async function main() {
+      const embeddedGeojson = window.BEIJING_GEOJSON;
+      const embeddedProcessed = window.BEIJING_PROCESSED;
+      const [geojson, processed] = embeddedGeojson && embeddedProcessed
+        ? [embeddedGeojson, embeddedProcessed]
+        : await Promise.all([
+          fetch("./data/beijing_districts.geojson").then(r => r.json()),
+          fetch("./data/processed.json").then(r => r.json())
+        ]);
+      echarts.registerMap("beijing", geojson);
+      document.getElementById("metricDistricts").textContent = fmt(processed.meta.districtCount);
+      document.getElementById("metricAreas").textContent = fmt(processed.meta.tradeAreaRows);
+      document.getElementById("metricPoi").textContent = fmt(processed.meta.poiTotal);
+      document.getElementById("metricGmv").textContent = fmtYi(processed.meta.gmvTotal);
+      const chart = echarts.init(document.getElementById("chart"), null, { renderer: "canvas" });
+      chart.setOption(buildOption(processed));
+      window.__MAP_READY__ = true;
+      window.__CHART__ = chart;
+    }
+
+    main().catch(error => {
+      console.error(error);
+      document.getElementById("chart").innerHTML = `<div style="padding:40px;color:#b91c1c">地图渲染失败：${error.message}</div>`;
+    });
+  </script>
+</body>
+</html>
