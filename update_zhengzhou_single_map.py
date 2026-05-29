@@ -14,6 +14,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parent
 INDEX = ROOT / "index.html"
 XLSX = Path("/Users/bytedance/Downloads/【郑州】面饮情况 - 团队x品类x门店明细-2026-04-29.xlsx")
+TAIYUAN_XLSX = Path("/Users/bytedance/Downloads/【品类】门店情况 - 团队x品类x门店明细-2026-05-29 12-56-37.xlsx")
 
 
 def clean(value):
@@ -79,6 +80,7 @@ def point_from_row(row):
         "位置": "郑州单计全量",
         "来源": "郑州单计全量",
         "POI名称": name,
+        "商家名称": clean(row.get("总户商家名称[最新]")),
         "地址": clean(row.get("poi所在地址[最新]")),
         "经度": lng,
         "纬度": lat,
@@ -107,6 +109,70 @@ def point_from_row(row):
     }
 
 
+def task_layer_from_taiyuan(row):
+    def f(name):
+        return clean(row.get(name)).replace(".0", "")
+
+    def n(name):
+        text = clean(row.get(name)).replace(",", "")
+        try:
+            return float(text)
+        except ValueError:
+            return 0.0
+
+    if f("是否当月动销") != "1" or f("是否在售") != "1" or n("本月核销GMV") <= 0:
+        return "动销问题调研", "当月未动销/未在售/核销GMV为0", "#dc2626", "#fee2e2"
+    if f("是否当月新开") == "1" and (f("是否新开动销") != "1" or n("月新开门店核销GMV") <= 0):
+        return "新开问题调研", "当月新开但新开动销或新开核销未达成", "#f97316", "#ffedd5"
+    if f("当月是否扫码动销_核销") != "1" or f("门店是否有电子码") != "1" or f("门店是否实体码已签收") != "1":
+        return "扫码/营销调研", "扫码动销/电子码/实体码签收未完全达成", "#2563eb", "#dbeafe"
+    return "普通POI", "未命中待处理任务规则", "#16a34a", "#dcfce7"
+
+
+def point_from_taiyuan_row(row):
+    lng = float(row["经度[最新]"])
+    lat = float(row["纬度[最新]"])
+    name = clean(row.get("poi名称[最新]"))
+    encoded = urllib.parse.quote(name)
+    tag, reason, color, soft = task_layer_from_taiyuan(row)
+    return {
+        "城市": "太原",
+        "位置": "太原当前筛选结果",
+        "来源": "太原当前筛选结果",
+        "POI名称": name,
+        "商家名称": clean(row.get("总户商家名称[最新]")),
+        "地址": clean(row.get("poi所在地址[最新]")),
+        "经度": lng,
+        "纬度": lat,
+        "小组": clean(row.get("围栏责任小组[当日]")),
+        "BDM": clean(row.get("围栏责任bdm[当日]")),
+        "BD": clean(row.get("围栏责任bd[当日]")),
+        "商家ID": clean(row.get("总户商家ID[最新]")),
+        "门店ID": clean(row.get("门店户ID[最新]")),
+        "品牌ID": clean(row.get("总户品牌ID[最新]")),
+        "POI ID": clean(row.get("poi_id[最新]")),
+        "商圈类型": clean(row.get("物理商圈类型_映射")),
+        "经营大类": clean(row.get("商圈经营大类_映射")),
+        "营业状态": clean(row.get("营业状态_映射")),
+        "是否认领": clean(row.get("是否认领")),
+        "是否在售": clean(row.get("是否在售")),
+        "是否动销": clean(row.get("是否当月动销")),
+        "本月GMV": clean_number(row.get("本月核销GMV")),
+        "线下GMV": clean_number(row.get("当月线下扫码核销GMV")),
+        "商品数": clean_number(row.get("当日在售商品数(T外卖+T直播)")),
+        "搜索次数": clean_number(row.get("近30日通过搜索进入poi详情页的次数")),
+        "围栏名称": clean(row.get("围栏名称[最新]")),
+        "调研标签": tag,
+        "任务原因": reason,
+        "颜色值": color,
+        "浅色值": soft,
+        "位置显示": "太原｜太原当前筛选结果",
+        "标注标题": f"{tag}｜{name}",
+        "高德标记链接": f"https://uri.amap.com/marker?position={lng:.6f}%2C{lat:.6f}&name={encoded}&src=codex.poi.visit",
+        "高德搜索链接": f"https://www.amap.com/search?query={encoded}",
+    }
+
+
 def load_existing_points():
     text = subprocess.check_output(
         ["git", "show", "8fd13b1:index.html"],
@@ -120,6 +186,14 @@ def load_existing_points():
     return json.loads(match.group(1))
 
 
+def load_current_points():
+    text = INDEX.read_text(encoding="utf-8")
+    match = re.search(r"const points = (\[.*?\]);\nconst cityOrder", text, re.S)
+    if not match:
+        raise RuntimeError("Cannot find current points array")
+    return json.loads(match.group(1))
+
+
 def load_zhengzhou_single_points():
     df = pd.read_excel(XLSX, sheet_name="Sheet1", dtype=str)
     df = df[df["单双计_门店归属"].astype(str).str.strip().eq("单计")].copy()
@@ -130,12 +204,27 @@ def load_zhengzhou_single_points():
     return [point_from_row(row) for _, row in df.iterrows()]
 
 
+def load_taiyuan_points():
+    df = pd.read_excel(TAIYUAN_XLSX, sheet_name="Sheet1", dtype=str)
+    df["经度[最新]"] = pd.to_numeric(df["经度[最新]"], errors="coerce")
+    df["纬度[最新]"] = pd.to_numeric(df["纬度[最新]"], errors="coerce")
+    df = df[df.apply(lambda r: valid_coord(r["经度[最新]"], r["纬度[最新]"]), axis=1)]
+    df = df.drop_duplicates(subset=["poi_id[最新]"], keep="first")
+    return [point_from_taiyuan_row(row) for _, row in df.iterrows()]
+
+
 def build_points():
-    existing = [
-        normalize_existing(p)
-        for p in load_existing_points()
-        if not (clean(p.get("城市")) == "郑州" and clean(p.get("位置")) == "二七万达补充点位")
-    ]
+    if XLSX.exists():
+        existing = [
+            normalize_existing(p)
+            for p in load_existing_points()
+            if not (clean(p.get("城市")) == "郑州" and clean(p.get("位置")) == "二七万达补充点位")
+        ]
+    else:
+        existing = [
+            p for p in load_current_points()
+            if clean(p.get("城市")) != "太原"
+        ]
     points = []
     seen = set()
     for point in existing:
@@ -145,15 +234,26 @@ def build_points():
             seen.add(key)
     added_from_excel = 0
     duplicate_from_excel = 0
-    for point in load_zhengzhou_single_points():
+    if XLSX.exists():
+        for point in load_zhengzhou_single_points():
+            key = poi_key(point)
+            if key in seen:
+                duplicate_from_excel += 1
+                continue
+            points.append(point)
+            seen.add(key)
+            added_from_excel += 1
+    added_from_taiyuan = 0
+    duplicate_from_taiyuan = 0
+    for point in load_taiyuan_points():
         key = poi_key(point)
         if key in seen:
-            duplicate_from_excel += 1
+            duplicate_from_taiyuan += 1
             continue
         points.append(point)
         seen.add(key)
-        added_from_excel += 1
-    return points, added_from_excel, duplicate_from_excel
+        added_from_taiyuan += 1
+    return points, added_from_excel, duplicate_from_excel, added_from_taiyuan, duplicate_from_taiyuan
 
 
 def unique_positions(points):
@@ -167,6 +267,7 @@ def unique_positions(points):
         ("郑州", "二七万达-大学路-航海路", "郑州｜位置三：二七万达-大学路-航海路"),
         ("郑州", "中牟县城-老县城南北-中县城", "郑州｜位置四：中牟县城-老县城南北-中县城"),
         ("郑州", "郑州单计全量", "郑州｜单计全量新增点位"),
+        ("太原", "太原当前筛选结果", "太原｜当前筛选结果"),
     ]
     counts = {(p["城市"], p["位置"]): 0 for p in points}
     for point in points:
@@ -179,11 +280,12 @@ def unique_positions(points):
 
 
 def render_index(points, positions):
-    city_counts = {city: sum(1 for p in points if p["城市"] == city) for city in ["北京", "郑州"]}
-    title = "北京 + 郑州单计 POI 拜访地图"
+    city_counts = {city: sum(1 for p in points if p["城市"] == city) for city in ["北京", "郑州", "太原"]}
+    title = "北京 + 郑州 + 太原 POI 拜访地图"
     tagged_total = sum(1 for p in points if clean(p.get("来源")) == "原拜访点位")
     new_total = sum(1 for p in points if clean(p.get("来源")) == "郑州单计全量")
-    subtitle = f"{len(points)} 个点位｜原拜访点位 {tagged_total} 个｜新增郑州单计 {new_total} 个"
+    taiyuan_total = sum(1 for p in points if clean(p.get("城市")) == "太原")
+    subtitle = f"{len(points)} 个点位｜原拜访点位 {tagged_total} 个｜郑州单计 {new_total} 个｜太原 {taiyuan_total} 个"
     points_json = json.dumps(points, ensure_ascii=False, separators=(",", ":"))
     positions_json = json.dumps(positions, ensure_ascii=False, separators=(",", ":"))
     return f"""<!doctype html>
@@ -221,6 +323,9 @@ def render_index(points, positions):
   .stat span {{ display:block; margin-top:3px; color:var(--muted); font-size:11px; }}
   .utility-row {{ display:flex; gap:8px; }}
   .utility-btn {{ flex:1; text-align:center; padding:9px 8px; font-size:13px; }}
+  .filter-row {{ display:grid; grid-template-columns:1fr; gap:8px; }}
+  .filter-input, .filter-select {{ width:100%; border:1px solid var(--line); border-radius:8px; background:white; color:var(--text); font:inherit; font-size:13px; padding:9px 10px; outline:none; }}
+  .filter-input:focus, .filter-select:focus {{ border-color:#2563eb; box-shadow:0 0 0 2px rgba(37,99,235,.12); }}
   .legend {{ display:grid; gap:6px; color:#334155; font-size:12px; }}
   .marker-label {{ border:0; background:transparent; }}
   .marker-wrap {{ display:flex; align-items:center; transform:translate(-10px,-10px); filter:drop-shadow(0 3px 5px rgba(15,23,42,.25)); }}
@@ -260,6 +365,8 @@ def render_index(points, positions):
   <div class="panel-body">
     <div class="section"><div class="section-title">城市</div><div class="city-row" id="cityButtons"></div></div>
     <div class="section"><div class="section-title">位置 / 来源</div><div class="buttons" id="positionButtons"></div></div>
+    <div class="section"><div class="section-title">BD</div><div class="filter-row"><select class="filter-select" id="bdFilter"></select></div></div>
+    <div class="section"><div class="section-title">POI / 商家名称</div><div class="filter-row"><input class="filter-input" id="nameSearch" placeholder="输入 POI 名称或商家名称" /></div></div>
     <div class="section"><div class="section-title">调研标签</div><div class="label-row" id="labelButtons"></div></div>
     <div class="section"><div class="section-title">当前展示</div><div class="stats">
       <div class="stat"><b id="shownCount">{len(points)}</b><span>展示点位</span></div>
@@ -271,20 +378,22 @@ def render_index(points, positions):
       <div><span class="dot" style="background:#2563eb"></span>北京：原重点拜访点位</div>
       <div><span class="dot" style="background:#f97316"></span>新开问题调研：原拜访点位标签</div>
       <div><span class="dot" style="background:#dc2626"></span>动销问题调研：原拜访点位标签</div>
-      <div><span class="dot" style="background:#16a34a"></span>郑州新增单计门店：绿色圆点，按 POI 去重，不参与调研标签</div>
+      <div><span class="dot" style="background:#16a34a"></span>郑州/太原普通 POI：绿色点；太原问题点复用蓝/橙/红任务分层</div>
     </div>
   </div>
 </aside>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 const points = {points_json};
-const cityOrder = ['全部','北京','郑州'];
-const cityCounts = {{'全部': points.length, '北京': {city_counts.get('北京', 0)}, '郑州': {city_counts.get('郑州', 0)}}};
+const cityOrder = ['全部','北京','郑州','太原'];
+const cityCounts = {{'全部': points.length, '北京': {city_counts.get('北京', 0)}, '郑州': {city_counts.get('郑州', 0)}, '太原': {city_counts.get('太原', 0)}}};
 const positionOrder = {positions_json};
 const labelOrder = ["扫码/营销调研", "新开问题调研", "动销问题调研"];
 const labelColors = {{"扫码/营销调研": "#2563eb", "新开问题调研": "#f97316", "动销问题调研": "#dc2626"}};
 let activeCity = '全部';
 let activePosition = '全部';
+let activeBD = '全部';
+let nameQuery = '';
 const activeLabels = new Set(labelOrder);
 const map = L.map('map', {{ zoomControl:true, preferCanvas:true }}).setView([34.75, 113.65], 8);
 L.tileLayer('https://webrd0{{s}}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={{x}}&y={{y}}&z={{z}}', {{ subdomains:['1','2','3','4'], attribution:'高德地图' }}).addTo(map);
@@ -293,11 +402,18 @@ const markers = [];
 function esc(value) {{ return String(value ?? '').replace(/[&<>'"]/g, ch => ({{'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}}[ch])); }}
 function keyFor(p) {{ return `${{p['城市']}}｜${{p['位置']}}`; }}
 function hasResearchLabel(p) {{ return labelOrder.includes(p['调研标签']); }}
+function bdList(p) {{ return String(p['BD'] || '-').split(/[,，、/]/).map(x => x.trim()).filter(Boolean); }}
+function bdMatch(p) {{ return activeBD === '全部' || bdList(p).includes(activeBD); }}
+function nameMatch(p) {{
+  if (!nameQuery) return true;
+  const q = nameQuery.toLowerCase();
+  return String(p['POI名称'] || '').toLowerCase().includes(q) || String(p['商家名称'] || '').toLowerCase().includes(q);
+}}
 function inSelection(p) {{
   const cityMatch = activeCity === '全部' || p['城市'] === activeCity;
   const positionMatch = activePosition === '全部' || keyFor(p) === activePosition;
   const labelMatch = !hasResearchLabel(p) || activeLabels.has(p['调研标签']);
-  return cityMatch && positionMatch && labelMatch;
+  return cityMatch && positionMatch && labelMatch && bdMatch(p) && nameMatch(p);
 }}
 function amapMarkerLink(p) {{ return `https://uri.amap.com/marker?position=${{Number(p['经度']).toFixed(6)}}%2C${{Number(p['纬度']).toFixed(6)}}&name=${{encodeURIComponent(p['POI名称'])}}&src=codex.poi.visit`; }}
 function popupHtml(p) {{
@@ -306,7 +422,9 @@ function popupHtml(p) {{
     <div class="popup-tag" style="background:${{p['浅色值']}};color:${{p['颜色值']}}">${{esc(tag)}}</div>
     <div class="popup-grid">
       <span>位置/来源</span><b>${{esc(p['位置'])}}</b>
+      <span>任务原因</span><b>${{esc(p['任务原因'] || '-')}}</b>
       <span>地址</span><b>${{esc(p['地址'])}}</b>
+      <span>商家名称</span><b>${{esc(p['商家名称'] || '-')}}</b>
       <span>小组</span><b>${{esc(p['小组'])}}</b>
       <span>BDM/BD</span><b>${{esc(p['BDM'])}} / ${{esc(p['BD'])}}</b>
       <span>商圈</span><b>${{esc(p['商圈类型'])}}</b>
@@ -324,7 +442,7 @@ function markerIcon(p) {{
   return L.divIcon({{ className:'marker-label', html:`<div class="marker-wrap"><div class="pin" style="background:${{p['颜色值']}}"></div><div class="pin-text">${{esc(p['POI名称'])}}</div></div>`, iconSize:[190,28], iconAnchor:[10,20], popupAnchor:[8,-14] }});
 }}
 points.forEach(p => {{
-  const marker = p['来源'] === '郑州单计全量'
+  const marker = p['来源'] === '郑州单计全量' || p['来源'] === '太原当前筛选结果'
     ? L.circleMarker([p['纬度'], p['经度']], {{ radius:4, color:'#ffffff', weight:1, fillColor:p['颜色值'], fillOpacity:.86, title:`${{p['城市']}}｜新增单计｜${{p['POI名称']}}` }}).bindPopup(popupHtml(p))
     : L.marker([p['纬度'], p['经度']], {{ icon:markerIcon(p), title:`${{p['城市']}}｜${{p['调研标签']}}｜${{p['POI名称']}}` }}).bindPopup(popupHtml(p));
   marker._pointData = p; markers.push(marker);
@@ -347,6 +465,12 @@ function updateButtons() {{
   document.querySelectorAll('[data-city]').forEach(btn => btn.classList.toggle('active', btn.dataset.city === activeCity));
   document.querySelectorAll('[data-position]').forEach(btn => btn.classList.toggle('active', btn.dataset.position === activePosition));
   document.querySelectorAll('[data-label]').forEach(btn => btn.classList.toggle('off', !activeLabels.has(btn.dataset.label)));
+}}
+function makeBDFilter() {{
+  const select = document.getElementById('bdFilter');
+  const bds = Array.from(new Set(points.flatMap(bdList))).filter(x => x && x !== '-').sort((a, b) => a.localeCompare(b, 'zh-Hans-CN'));
+  select.innerHTML = `<option value="全部">全部 BD</option>` + bds.map(bd => `<option value="${{esc(bd)}}">${{esc(bd)}}（${{points.filter(p => bdList(p).includes(bd)).length}}）</option>`).join('');
+  select.onchange = () => {{ activeBD = select.value; renderMarkers(true); }};
 }}
 function makeCityButtons() {{
   const wrap = document.getElementById('cityButtons');
@@ -378,10 +502,11 @@ function makeLabelButtons() {{
     wrap.appendChild(btn);
   }});
 }}
-document.getElementById('showAll').onclick = () => {{ activeCity='全部'; activePosition='全部'; labelOrder.forEach(l => activeLabels.add(l)); renderMarkers(true); }};
+document.getElementById('showAll').onclick = () => {{ activeCity='全部'; activePosition='全部'; activeBD='全部'; nameQuery=''; document.getElementById('bdFilter').value='全部'; document.getElementById('nameSearch').value=''; labelOrder.forEach(l => activeLabels.add(l)); renderMarkers(true); }};
 document.getElementById('fitCurrent').onclick = () => renderMarkers(true);
 document.getElementById('togglePanel').onclick = () => document.getElementById('panel').classList.toggle('collapsed');
-makeCityButtons(); makePositionButtons(); makeLabelButtons(); renderMarkers(true);
+document.getElementById('nameSearch').oninput = event => {{ nameQuery = event.target.value.trim(); renderMarkers(true); }};
+makeCityButtons(); makePositionButtons(); makeBDFilter(); makeLabelButtons(); renderMarkers(true);
 </script>
 </body>
 </html>
@@ -463,13 +588,13 @@ def update_readme(total, zhengzhou_total, added, duplicates):
 
 
 def main():
-    points, added, duplicates = build_points()
+    points, added, duplicates, taiyuan_added, taiyuan_duplicates = build_points()
     positions = unique_positions(points)
     INDEX.write_text(render_index(points, positions), encoding="utf-8")
     write_csv(points)
     write_geojson(points)
     write_kml(points)
-    zhengzhou_total = len(load_zhengzhou_single_points())
+    zhengzhou_total = len(load_zhengzhou_single_points()) if XLSX.exists() else sum(1 for p in points if clean(p.get("城市")) == "郑州")
     update_readme(len(points), zhengzhou_total, added, duplicates)
     write_zip()
     summary = {
@@ -477,6 +602,9 @@ def main():
         "zhengzhou_single_excel": zhengzhou_total,
         "added_from_excel": added,
         "duplicates_from_excel": duplicates,
+        "taiyuan_points": sum(1 for p in points if clean(p.get("城市")) == "太原"),
+        "added_from_taiyuan_excel": taiyuan_added,
+        "duplicates_from_taiyuan_excel": taiyuan_duplicates,
         "positions": {p["key"]: sum(1 for x in points if f"{x['城市']}｜{x['位置']}" == p["key"]) for p in positions},
     }
     (ROOT / "map_update_summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
